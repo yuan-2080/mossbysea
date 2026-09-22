@@ -19,14 +19,14 @@ const {
 } = Astro.props;
 
 const KIND_LABEL: Record<string, string> = {
-  comparison: '对比测评',
-  'hands-on': '实战记录',
-  guide: '上手指南',
-  hardware: '硬件环境',
+  comparison: 'Comparison',
+  'hands-on': 'Hands-on',
+  guide: 'Guide',
+  hardware: 'Hardware',
 };
 
 const fmt = (d: Date) =>
-  new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium' }).format(d);
+  new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(d);
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -45,8 +45,8 @@ const jsonLd = {
     <h1>{title}</h1>
     <p class="meta">
       <span class="kind">{KIND_LABEL[kind] ?? kind}</span>
-      　{fmt(pubDate)}
-      {updatedDate && <> · 更新于 {fmt(updatedDate)}</>}
+       · {fmt(pubDate)}
+      {updatedDate && <> · updated {fmt(updatedDate)}</>}
     </p>
 
     {affiliate && <AffiliateNotice />}
@@ -55,7 +55,7 @@ const jsonLd = {
 
     {siblings.length > 0 && (
       <nav class="cluster-rail">
-        <h4>同系列</h4>
+        <h4>More in this series</h4>
         <ul>
           {siblings.map((s) => (
             <li><a href={s.href}>{s.title}</a></li>

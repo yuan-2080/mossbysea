@@ -1,4 +1,4 @@
-# Runbook — 运营手册
+# MossBySea — 运营手册
 
 一个 Astro 静态站，为通过联盟网络（PartnerBoost / Impact / Amazon Associates）
 的 publisher 审核而搭，主题是 AI 工具与工作流实测。
@@ -11,21 +11,18 @@ npm run build    # 输出到 dist/
 
 ---
 
-## 1. 部署前必须改的三处
+## 1. 站点配置
 
-全部集中在 `src/consts.ts`，改完再部署：
+全部集中在 `src/consts.ts`，已配置完成：
 
-| 字段 | 当前值 | 改成 |
-|---|---|---|
-| `SITE.url` | `https://REPLACE-ME.com` | 你的真实域名，**不带结尾斜杠** |
-| `SITE.email` | `hello@REPLACE-ME.com` | **域名邮箱**，不要用 Gmail |
-| `SITE.author` | `Yuan` | 你希望公开显示的名字 |
+| 字段 | 当前值 |
+|---|---|
+| `SITE.name` | `MossBySea` |
+| `SITE.url` | `https://mossbysea.com` |
+| `SITE.email` | `hello@mossbysea.com` |
+| `SITE.author` | `Moss` |
 
-另外 `public/robots.txt` 里的 sitemap 地址也要改。一条命令搞定：
-
-```bash
-grep -rl "REPLACE-ME.com" src public | xargs sed -i '' 's|REPLACE-ME.com|你的域名.com|g'
-```
+改站名、tagline、导航都只动这一个文件。`public/robots.txt` 里另有一处 sitemap 地址。
 
 > **为什么域名邮箱很重要**：联盟网络审核会检查联系方式。
 > `hello@yourdomain.com` 说明你真的拥有这个域名；Gmail 地址显著提高拒绝率。

@@ -8,28 +8,26 @@ const posts = (await getCollection('tools', ({ data }) => !data.draft)).sort(
 );
 
 const KIND_LABEL: Record<string, string> = {
-  comparison: '对比测评',
-  'hands-on': '实战记录',
-  guide: '上手指南',
-  hardware: '硬件环境',
+  comparison: 'Comparison',
+  'hands-on': 'Hands-on',
+  guide: 'Guide',
+  hardware: 'Hardware',
 };
 const fmt = (d: Date) =>
-  new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium' }).format(d);
+  new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(d);
 ---
 <Base>
   <h1>{SITE.tagline}</h1>
   <p class="lede">
-    我在一家互联网公司做内容与数据。这个站记录我用 AI 编程和 Agent 工具完成真实工作的过程——
-    不是功能罗列，是把一个具体任务跑通（或跑砸）之后的复盘。
+    I work in content and data at an internet company. This site records what happens when I point AI coding and agent tools at real tasks — not feature lists, but the debrief after a specific job either worked or fell apart.
   </p>
   <p>
-    所有结论都来自我自己的机器和自己的活儿。写法见<a href="/about/">关于</a>，
-    收入来源见<a href="/affiliate-disclosure/">联盟披露</a>。
+    Every conclusion here comes from my own machine and my own work. How I test is in <a href="/about/">About</a>; where the money comes from is in the <a href="/affiliate-disclosure/">affiliate disclosure</a>.
   </p>
 
-  <h2>最新</h2>
+  <h2>Latest</h2>
   {posts.length === 0 ? (
-    <p class="meta">还没有文章。把第一篇写完后它会出现在这里。</p>
+    <p class="meta">No posts yet. The first one will show up here.</p>
   ) : (
     <ul class="post-list">
       {posts.map((post) => (
@@ -38,7 +36,7 @@ const fmt = (d: Date) =>
           <p>{post.data.description}</p>
           <span class="meta">
             <span class="kind">{KIND_LABEL[post.data.kind] ?? post.data.kind}</span>
-            　{fmt(post.data.pubDate)}
+             · {fmt(post.data.pubDate)}
           </span>
         </li>
       ))}

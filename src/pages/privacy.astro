@@ -2,72 +2,65 @@
 import { SITE } from '../consts';
 import Base from '../layouts/Base.astro';
 ---
-<Base title="隐私政策" description="本站收集什么数据、不收集什么、以及第三方追踪的说明。">
-  <h1>隐私政策</h1>
+<Base
+  title="Privacy"
+  description="What this site collects, what it doesn't, and how third-party affiliate tracking works."
+>
+  <h1>Privacy</h1>
 
   <p class="lede">
-    短版：本站不要求注册、不收集你的个人信息、不卖数据。
-    但联盟链接和统计工具涉及第三方，下面写清楚。
+    Short version: no accounts, no personal data collected, nothing sold. Affiliate links and analytics involve third parties, and that's spelled out below.
   </p>
 
-  <h2>本站直接收集的信息</h2>
+  <h2>What this site collects</h2>
   <p>
-    本站是静态网站，没有账号系统、没有评论区、没有表单。
-    <strong>本站本身不收集任何可识别你个人身份的信息。</strong>
+    This is a static site. There are no accounts, no comments, and no forms. <strong>The site itself collects nothing that identifies you.</strong>
   </p>
   <p>
-    托管服务商（Cloudflare Pages）会出于安全和运维目的记录标准服务器日志，
-    可能包含 IP 地址、浏览器类型和访问时间。这些日志由服务商保管，
-    我只能看到聚合后的统计。
+    The host (Cloudflare) keeps standard server logs for security and operations, which can include IP address, browser type, and request time. Those logs belong to the host; I only see aggregate figures.
   </p>
 
-  <h2>访问统计</h2>
+  <h2>Analytics</h2>
   <p>
-    本站使用不依赖 cookie、不追踪跨站行为的访问统计服务，
-    只记录页面浏览量、来源域名和大致地区。<strong>不设置追踪 cookie，
-    不构建用户画像，不做跨站追踪。</strong>
+    This site uses cookie-free analytics that do not track you across sites. It records page views, referring domain, and approximate region. <strong>No tracking cookies, no profiles, no cross-site tracking.</strong>
   </p>
   <p class="meta">
-    <!-- ⚠️ 上面这段描述的是 Plausible / Umami / Cloudflare Web Analytics 这类工具。
-         如果你改用 Google Analytics，必须重写这一段 —— GA 会设置 cookie、
-         会做跨站追踪，且在 GDPR 地区需要 Cookie 同意横幅。别留着这段不改。 -->
+    <!-- WARNING: the paragraph above describes Cloudflare Web Analytics /
+         Plausible / Umami. If you switch to Google Analytics you MUST rewrite
+         it — GA sets cookies, tracks across sites, and needs a consent banner
+         in GDPR regions. Do not leave this paragraph unchanged. -->
   </p>
 
-  <h2>联盟链接与第三方 cookie</h2>
+  <h2>Affiliate links and third-party cookies</h2>
   <p>
-    本站包含联盟链接。当你点击这类链接时，<strong>目标商家或联盟网络可能在你的
-    浏览器中写入 cookie</strong>，用于把你后续的购买归因到本站，从而向我支付佣金。
+    This site carries affiliate links. When you click one, <strong>the destination merchant or affiliate network may set a cookie in your browser</strong> so that a later purchase can be attributed here and a commission paid to me.
   </p>
   <p>
-    这些 cookie 由第三方设置和读取，本站无法访问其中内容，也无法代你删除。
-    你可以：
+    Those cookies are set and read by third parties. This site can't see inside them and can't delete them on your behalf. You can:
   </p>
   <ul>
-    <li>在浏览器设置中阻止第三方 cookie；</li>
-    <li>使用隐私模式访问商家网站；</li>
-    <li>不点击联盟链接，直接搜索商家名进入——价格完全相同。</li>
+    <li>block third-party cookies in your browser settings;</li>
+    <li>visit the merchant in a private window;</li>
+    <li>skip the link entirely and search for the merchant by name — the price is identical.</li>
   </ul>
   <p>
-    详细说明见<a href="/affiliate-disclosure/">联盟披露</a>。
+    The full explanation is in the <a href="/affiliate-disclosure/">affiliate disclosure</a>.
   </p>
 
-  <h2>外部链接</h2>
+  <h2>External links</h2>
   <p>
-    本站链接到第三方网站。一旦离开本站，对方的隐私政策适用，本站不对其内容
-    或数据处理方式负责。
+    This site links out to third-party websites. Once you leave, their privacy policies apply; I'm not responsible for their content or how they handle data.
   </p>
 
-  <h2>你的权利</h2>
+  <h2>Your rights</h2>
   <p>
-    由于本站不存储你的个人数据，通常没有可供访问、更正或删除的内容。
-    如果你认为本站以某种方式持有了你的信息，请
-    <a href={`mailto:${SITE.email}`}>发邮件</a>，我会核实并处理。
+    Because this site stores no personal data about you, there's usually nothing to access, correct, or delete. If you believe it holds information about you in some way, <a href={`mailto:${SITE.email}`}>email me</a> and I'll check and deal with it.
   </p>
 
-  <h2>变更</h2>
+  <h2>Changes</h2>
   <p>
-    本政策变更时会更新下方日期。涉及数据处理方式的实质性变更，会在首页说明。
+    The date below changes when this policy does. Anything that materially changes how data is handled will also be noted on the home page.
   </p>
 
-  <p class="meta">最后更新：2026 年 9 月</p>
+  <p class="meta">Last updated: September 2026</p>
 </Base>

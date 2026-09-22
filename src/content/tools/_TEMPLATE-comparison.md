@@ -1,9 +1,9 @@
 ---
-title: 'Claude Code vs Cursor vs Codex CLI：同一个取数任务跑三遍'
-description: '拿一个真实的 SQL 取数 + 报表生成任务，在三个 AI 编程工具里各跑一次，记录完成度、返工次数和实际耗时。'
+title: 'Claude Code vs Cursor vs Codex CLI: one real reporting task, three times'
+description: 'I took a SQL extraction and report-generation job I actually had to do, ran it once in each of three AI coding tools, and recorded completion, rework rounds, and real elapsed time.'
 pubDate: 2026-09-22
 kind: comparison
-tags: ['AI 编程', 'Claude Code', 'Cursor', 'Codex']
+tags: ['AI coding', 'Claude Code', 'Cursor', 'Codex']
 affiliate: true
 draft: true
 ---
@@ -11,7 +11,6 @@ draft: true
 <!--
 ═══════════════════════════════════════════════════════════════
   这是模板，不是文章。复制它改名后再写，别直接改这个文件。
-
   写完后把 frontmatter 的 draft 改成 false 才会上线。
 
   为什么是这个结构：联盟网络审核时主要看「对比测评」类文章，
@@ -20,56 +19,56 @@ draft: true
 ═══════════════════════════════════════════════════════════════
 -->
 
-> **测试日期**：2026-09-22　**版本**：Claude Code x.x / Cursor x.x / Codex CLI x.x
-> **测试环境**：macOS 15 / M4 Pro / 32GB
+> **Tested** 2026-09-22 · **Versions** Claude Code x.x, Cursor x.x, Codex CLI x.x
+> **Machine** macOS 15, M4 Pro, 32 GB
 
 <!-- ↑ 时效标注。这类工具几周一变，没有日期和版本号的测评三个月后就是错的。
      这一条也是 E-E-A-T 信号：说明作者知道自己在测什么。 -->
 
-## 我要它们干的活
+## The job I gave them
 
 <!-- ═══ 这一节是全文的地基，最不能省 ═══
      写清楚三件事：
-     1. 任务是什么（具体到输入输出，不要说「写个脚本」）
+     1. 任务是什么（具体到输入输出，不要写「写个脚本」）
      2. 为什么这个任务有代表性
      3. 判定「完成」的标准是什么
 
      关键：这必须是你本来就要干的活。为写文章造的 demo 会系统性高估工具表现，
      而读者一眼能看出来是 demo。 -->
 
-一句话描述任务：……
+The task in one sentence: …
 
-判定完成的标准：
+What counts as finished:
 
-- [ ] 条件一
-- [ ] 条件二
-- [ ] 条件三
+- [ ] Condition one
+- [ ] Condition two
+- [ ] Condition three
 
-## 结论先放这里
+## The answer, up front
 
 <!-- 读者大部分只看这一段。别把结论藏到文末。 -->
 
-| | 完成度 | 返工次数 | 实际耗时 | 月成本 |
+| | Completed | Rework rounds | Elapsed | Cost / mo |
 |---|---|---|---|---|
-| **工具 A** | | | | |
-| **工具 B** | | | | |
-| **工具 C** | | | | |
+| **Tool A** | | | | |
+| **Tool B** | | | | |
+| **Tool C** | | | | |
 
-**如果你和我情况类似，选 ×××。** 理由一句话：……
+**If your situation looks like mine, pick ×××.** In one line, why: …
 
-**什么情况下选另一个**：……
+**When you'd want a different one:** …
 
 <!-- ↑ 这两句是整篇文章最有价值的部分。
      「A 最好」没信息量，「什么情况下选 A、什么情况下选 B」才有。 -->
 
-## 工具 A：……
+## Tool A: …
 
-### 跑通过程
+### Getting it working
 
 <!-- 按时间顺序写你实际做了什么。截图放这里。
      截图必须是你自己的屏幕，不要用官网素材 —— 原创图片是过审的加分项。 -->
 
-### 卡在哪
+### Where it stalled
 
 <!-- ═══ 这一节决定文章可信度 ═══
      只写优点的测评一眼假。把真实卡点写出来：
@@ -77,53 +76,53 @@ draft: true
      - 我改了几轮才对
      - 有没有它根本做不到的部分 -->
 
-### 成本
+### What it cost
 
-- 订阅：
-- token 消耗：
-- **我花掉的时间**：
+- Subscription:
+- Token spend:
+- **Hours it cost me:**
 
 <!-- 时间成本通常比订阅费重要一个数量级，但几乎没人写。写了就是差异化。 -->
 
-## 工具 B：……
+## Tool B: …
 
 <!-- 同上结构。注意：必须跑同一个任务、同样的判定标准。
      换题目的横向对比是无效的。 -->
 
-## 工具 C：……
+## Tool C: …
 
-## 横向对比
+## Head to head
 
-### 在这件事上的差异
+### Where they actually differ
 
 <div class="table-wrap">
 
-| 维度 | 工具 A | 工具 B | 工具 C |
+| | Tool A | Tool B | Tool C |
 |---|---|---|---|
-| 理解任务的准确度 | | | |
-| 长上下文表现 | | | |
-| 工具调用 / MCP | | | |
-| 出错后的自我修正 | | | |
-| 上手成本 | | | |
+| Read the task correctly | | | |
+| Long-context behaviour | | | |
+| Tool calling / MCP | | | |
+| Self-correction after an error | | | |
+| Time to get productive | | | |
 
 </div>
 
-### 我没测的部分
+### What I didn't test
 
 <!-- ═══ 别跳过这节 ═══
      明说边界：我只测了一个任务、一种语言、一个人的工作习惯。
      承认局限会提高可信度，不会降低。
      这也是 Google 的 E-E-A-T 在找的东西。 -->
 
-## 谁该买哪个
+## Who should buy which
 
 <!-- 按人群给结论，不要给一个笼统的「最佳」。
      例：
-     - 如果你主要写 SQL 和数据脚本 → …
-     - 如果你在大型代码库里改东西 → …
-     - 如果你只是想试试，不想付费 → … -->
+     - If you mostly write SQL and data scripts → …
+     - If you work inside a large existing codebase → …
+     - If you just want to try one without paying → … -->
 
-## 三个月后我会复测
+## I'll retest in three months
 
 <!-- 承诺复测并真的做。同一篇文章更新 updatedDate，
      比新开一篇效果好 —— 页面权重是累积的。 -->
@@ -132,7 +131,7 @@ draft: true
 
 <!-- ═══ 联盟链接放置规则 ═══
      1. frontmatter 里 affiliate: true，文首会自动插入披露条
-     2. 链接放在「谁该买哪个」之后，不要在正文中段反复插
+     2. 链接放在「Who should buy which」之后，不要在正文中段反复插
      3. 没实际用过的产品不放链接
-     4. 不放「限时」「仅剩名额」这类话术
+     4. 不放「limited time」「only N spots left」这类话术
 -->

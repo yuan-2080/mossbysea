@@ -3,83 +3,72 @@ import { SITE } from '../consts';
 import Base from '../layouts/Base.astro';
 ---
 <Base
-  title="关于"
-  description="这个站是谁写的、怎么测试、以及收入从哪来。"
+  title="About"
+  description="Who writes this site, how the testing works, and where the money comes from."
 >
-  <h1>关于</h1>
+  <h1>About</h1>
 
   <p class="lede">
-    这个站只有一个作者，写的都是我自己跑过的东西。
+    One author, one rule: nothing gets written up here that I haven't run myself.
   </p>
 
-  <h2>我是谁</h2>
+  <h2>Who I am</h2>
   <p>
-    我叫 {SITE.author}，在一家互联网公司做内容运营和数据分析。日常工作是用 SQL
-    取数、做指标口径、以及把重复的内容生产流程自动化掉——最后这件事让我在过去一年里
-    几乎每天都在用 AI 编程和 Agent 工具。
+    I'm {SITE.author}. I work in content and data at an internet company — writing SQL, arguing about metric definitions, and automating the repetitive parts of content production. That last one is why I've spent most of the past year inside AI coding and agent tools.
   </p>
   <p>
-    这些工具的官方文档和营销页都写得很漂亮，但真正拿它去干一件有截止日期的活，
-    体验完全是另一回事。这个站记录的就是后者。
+    The documentation and marketing pages for these tools are excellent. Pointing one at a job with a deadline is a completely different experience. This site is about the second thing.
   </p>
   <p class="meta">
-    <!-- 建议补上：一句你的背景 + 一个可验证的公开身份（GitHub / X / LinkedIn）。
-         联盟网络和 Google 都在看「这是不是一个能对内容负责的真人」。 -->
+    <!-- TODO: add one line of background plus a verifiable public identity
+         (GitHub / X / LinkedIn). Affiliate networks and Google both look for
+         evidence that a real person stands behind the content. -->
   </p>
 
-  <h2>写什么、不写什么</h2>
-  <p><strong>会写：</strong></p>
+  <h2>What gets written here</h2>
+  <p><strong>Yes:</strong></p>
   <ul>
-    <li>拿 AI 工具完成一个具体工作任务的完整过程，包括失败的部分</li>
-    <li>同一个任务下几个工具的横向对比</li>
-    <li>支撑这套工作流的硬件环境——显示器、扩展坞、本地跑模型的机器</li>
+    <li>Full write-ups of using an AI tool to finish a specific work task, failures included</li>
+    <li>Head-to-head comparisons of several tools on one identical task</li>
+    <li>The hardware behind the workflow — monitors, docks, machines that run models locally</li>
   </ul>
-  <p><strong>不会写：</strong></p>
+  <p><strong>No:</strong></p>
   <ul>
-    <li>没用过的工具。功能列表谁都能抄，没有价值。</li>
-    <li>「2026 年最好的 50 个 AI 工具」这类聚合稿。</li>
-    <li>任何和我本职工作存在利益关系的产品，包括同业的竞品。</li>
+    <li>Tools I haven't used. Anyone can copy a feature list; it's worth nothing.</li>
+    <li>"The 50 best AI tools of 2026" roundups.</li>
+    <li>Anything where my day job creates a conflict of interest, including competitors in that industry.</li>
   </ul>
 
-  <h2>怎么测的</h2>
-  <p>为了让不同文章之间可比，所有测评遵循同一套规则：</p>
+  <h2>How I test</h2>
+  <p>So that posts can be compared against each other, every test follows the same rules:</p>
   <ol>
     <li>
-      <strong>同任务对比。</strong>横向评测时，几个工具跑的是同一个任务，
-      不换题目、不换数据、不换提示词结构。
+      <strong>Same task.</strong> In a head-to-head, every tool gets the identical task — same data, same prompt structure, no swapping the problem halfway through.
     </li>
     <li>
-      <strong>任务来自真实工作。</strong>不为写文章专门造 demo——
-      demo 会系统性地高估工具表现。
+      <strong>Real work only.</strong> I don't build a demo for the post. Demos systematically flatter the tool, and readers can tell.
     </li>
     <li>
-      <strong>失败照写。</strong>跑砸的地方、卡住的地方、我改了几轮才通的，
-      都会写进去。
+      <strong>Failures get written up.</strong> Where it stalled, what it misread, how many rounds it took me to get it right.
     </li>
     <li>
-      <strong>成本写清楚。</strong>订阅价、token 消耗、以及我实际花掉的时间。
-      时间成本通常比订阅费重要得多。
+      <strong>Costs stated.</strong> Subscription price, token spend, and the hours it cost me. The hours usually matter more than the subscription.
     </li>
     <li>
-      <strong>标注时效。</strong>这类工具几周一个版本，每篇文章开头都标测试日期
-      和版本号。超过三个月没复测的结论，我会在文中说明。
+      <strong>Everything is dated.</strong> These tools ship a new version every few weeks, so each post opens with a test date and version numbers. If I haven't retested in three months, the post says so.
     </li>
   </ol>
 
-  <h2>钱从哪来</h2>
+  <h2>Where the money comes from</h2>
   <p>
-    这个站有联盟链接，我会从部分购买中获得佣金。这不影响文章结论，原因和具体规则
-    写在<a href="/affiliate-disclosure/">联盟披露</a>页——那一页写得很具体，
-    包括我在什么情况下会拒绝推荐一个给我佣金的产品。
+    This site carries affiliate links and I earn a commission on some purchases. It doesn't change the conclusions, and the <a href="/affiliate-disclosure/">affiliate disclosure</a> spells out exactly why — including the cases where I'd refuse to recommend a product that pays me.
   </p>
   <p>
-    另外说明：本站与我的雇主无关，内容不代表雇主观点，也不涉及任何与我本职工作相关的产品推荐。
+    For the record: this site is unaffiliated with my employer, nothing here represents their views, and I don't cover products related to my day job.
   </p>
 
-  <h2>纠错</h2>
+  <h2>Corrections</h2>
   <p>
-    如果你发现文章里有错——测试方法有问题、数据过期、或者结论根本不成立——
-    请<a href="/contact/">告诉我</a>。改正会直接写在原文里并标注修改日期，
-    不会悄悄删掉。
+    If you find something wrong — broken methodology, stale numbers, a conclusion that doesn't hold — please <a href="/contact/">tell me</a>. Corrections go into the original post with a dated note. Nothing gets quietly deleted.
   </p>
 </Base>

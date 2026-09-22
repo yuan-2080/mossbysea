@@ -3,93 +3,81 @@ import { SITE } from '../consts';
 import Base from '../layouts/Base.astro';
 ---
 <Base
-  title="联盟披露"
-  description="本站如何通过联盟链接获得收入，以及这对文章结论意味着什么。"
+  title="Affiliate Disclosure"
+  description="How this site earns money through affiliate links, and what that does and does not do to the conclusions."
 >
-  <h1>联盟披露</h1>
+  <h1>Affiliate Disclosure</h1>
 
   <p class="lede">
-    简短版：本站部分链接是联盟链接。你通过它们购买，我可能拿到佣金，
-    <strong>你的价格不变</strong>。佣金不决定我推荐什么。
+    Short version: some links here are affiliate links. If you buy through one, I may earn a commission and <strong>your price does not change</strong>. Commissions do not decide what I recommend.
   </p>
 
-  <h2>什么是联盟链接</h2>
+  <h2>What an affiliate link is</h2>
   <p>
-    联盟链接是一个带有识别码的普通链接。你点击后，商家能知道这次访问来自本站；
-    如果你随后完成购买或订阅，商家会把成交额的一部分作为佣金支付给我。
+    An affiliate link is an ordinary link carrying an identifier. When you click it, the merchant can tell the visit came from this site. If you go on to buy or subscribe, they pay me a share of the sale as commission.
   </p>
   <p>
-    这笔钱由商家从自己的营销预算中支出，<strong>不会加到你的价格上</strong>。
-    你通过联盟链接购买的价格，和你直接搜索进入商家网站购买的价格是一样的。
+    That money comes out of the merchant's marketing budget. <strong>It is not added to your price.</strong> What you pay going through a link here is the same as what you'd pay searching for the merchant directly.
   </p>
 
-  <h2>本站参与的联盟计划</h2>
+  <h2>Programs this site participates in</h2>
   <p>
-    本站参与若干第三方联盟计划。具体合作方会随时间变化，当前主要包括 SaaS
-    工具的官方推广计划，以及消费电子品类的联盟网络。
+    This site takes part in several third-party affiliate programs. The specific partners change over time; currently they consist mainly of official programs run by SaaS tools, plus affiliate networks covering consumer electronics.
   </p>
   <p class="meta">
-    <!-- 拿到具体账号后，把实际参与的计划名逐条列在这里（例如：
-         Amazon Associates、PartnerBoost、Impact.com、以及具体的 SaaS 官方计划）。
-         逐条列出比笼统描述更可信，也是多数联盟计划的服务条款要求。 -->
+    <!-- TODO: once the accounts are live, list each program by name here
+         (e.g. Amazon Associates, PartnerBoost, Impact.com, plus specific SaaS
+         programs). Naming them is more credible than a vague description, and
+         most affiliate programs require it in their terms of service. -->
   </p>
 
-  <h2>佣金如何影响（和不影响）内容</h2>
-  <p>这是这一页最重要的部分，我尽量写具体：</p>
+  <h2>What commissions do and don't affect</h2>
+  <p>This is the part of the page that matters, so I'll be specific.</p>
 
-  <h3>不影响的部分</h3>
+  <h3>What they don't affect</h3>
   <ul>
     <li>
-      <strong>排名和结论。</strong>横向对比里谁排第一，由测试结果决定。
-      我不会因为 A 的佣金率是 30%、B 是 0%，就把 A 排前面。
+      <strong>Rankings and conclusions.</strong> Who comes first in a comparison is decided by the test results. I don't move A ahead of B because A pays 30% and B pays nothing.
     </li>
     <li>
-      <strong>缺点照写。</strong>给我佣金的产品，缺点和不给佣金的产品一样写。
+      <strong>Criticism.</strong> Products that pay me get their flaws written up exactly like products that don't.
     </li>
     <li>
-      <strong>不推荐的自由。</strong>如果一个产品有联盟计划但我认为不值得买，
-      我会直接说不值得，并且不放链接。
+      <strong>The freedom to say no.</strong> If a product runs an affiliate program and I don't think it's worth buying, I say so and leave the link out.
     </li>
   </ul>
 
-  <h3>会影响的部分（诚实地说）</h3>
+  <h3>What they do affect — honestly</h3>
   <ul>
     <li>
-      <strong>选题。</strong>我更可能去测试一个有联盟计划的产品，因为写它可能有回报。
-      这是真实存在的偏向，我没法完全消除，只能告诉你它存在。
+      <strong>What I choose to test.</strong> I'm more likely to test a product that has an affiliate program, because writing it up might pay. That bias is real, I can't fully remove it, and the least I can do is tell you it exists.
     </li>
     <li>
-      <strong>覆盖面。</strong>某些优秀的开源工具没有联盟计划，
-      它们在本站被提到的频率可能低于其实际价值。如果你在做选型，
-      不要把「本站写了什么」当作「市面上有什么」的完整清单。
+      <strong>Coverage.</strong> Some excellent open-source tools have no affiliate program, and they probably show up here less than they deserve. If you're making a decision, don't treat "what this site covers" as a complete map of what's available.
     </li>
   </ul>
 
-  <h2>我的规则</h2>
+  <h2>My rules</h2>
   <ol>
-    <li>没有实际用过的产品，不放联盟链接。</li>
-    <li>包含联盟链接的文章，在正文最前面显示披露提示，不放在文末。</li>
-    <li>不接受「付费换好评」——如果有厂商付费，会标注为赞助内容并单独说明。</li>
-    <li>不使用「限时」「仅剩几个名额」这类制造紧迫感的话术。</li>
-    <li>产品变差了就改结论，即使它还在给我佣金。修改会标注日期。</li>
+    <li>No affiliate link for a product I haven't actually used.</li>
+    <li>Posts with affiliate links carry the disclosure at the top, not buried at the bottom.</li>
+    <li>No paid reviews. If a vendor ever pays for coverage, it gets labelled as sponsored and kept separate.</li>
+    <li>No "limited time" or "only a few spots left" urgency tactics.</li>
+    <li>When a product gets worse, the conclusion changes — even if it's still paying me. Edits are dated.</li>
   </ol>
 
-  <h2>Cookie 与追踪</h2>
+  <h2>Cookies and tracking</h2>
   <p>
-    点击联盟链接时，商家或联盟网络可能在你的浏览器中写入 cookie，
-    用于将后续购买归因到本站。这是联盟机制的工作方式，本站无法关闭它，
-    但你可以在浏览器设置中阻止第三方 cookie。
+    When you click an affiliate link, the merchant or affiliate network may set a cookie in your browser so a later purchase can be attributed to this site. That's how the mechanism works; this site can't switch it off, though you can block third-party cookies in your browser settings.
   </p>
   <p>
-    本站自身收集了什么、没收集什么，写在<a href="/privacy/">隐私政策</a>。
+    What this site itself collects, and doesn't, is on the <a href="/privacy/">privacy page</a>.
   </p>
 
-  <h2>合规声明</h2>
+  <h2>Compliance</h2>
   <p>
-    本披露依据美国联邦贸易委员会（FTC）《背书与推荐使用指南》
-    （Endorsement Guides）的要求提供。如果你对本站的任何商业关系有疑问，
-    欢迎<a href="/contact/">直接问我</a>。
+    This disclosure is provided in line with the US Federal Trade Commission's Endorsement Guides. If you have a question about any commercial relationship behind something on this site, <a href="/contact/">just ask me</a>.
   </p>
 
-  <p class="meta">最后更新：2026 年 9 月</p>
+  <p class="meta">Last updated: September 2026</p>
 </Base>

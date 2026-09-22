@@ -2,35 +2,36 @@
 import { SITE } from '../consts';
 import Base from '../layouts/Base.astro';
 ---
-<Base title="联系" description="怎么联系本站作者，以及我会回什么、不回什么。">
-  <h1>联系</h1>
+<Base
+  title="Contact"
+  description="How to reach the author of this site, and what does and doesn't get a reply."
+>
+  <h1>Contact</h1>
 
   <p class="lede">
-    邮件：<a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
   </p>
   <p>
-    我一个人维护这个站，通常在几个工作日内回复。
+    I run this site alone and usually reply within a few working days.
   </p>
 
-  <h2>这些欢迎发给我</h2>
+  <h2>Please do send</h2>
   <ul>
-    <li><strong>纠错</strong>——文章里的事实错误、过期数据、方法漏洞。这类邮件我一定回。</li>
-    <li><strong>补充</strong>——你在同一个工具上遇到了不同结果，告诉我你的环境和版本。</li>
-    <li><strong>选题</strong>——你想看某个工具的实测，可以提，但我只写自己用得上的。</li>
-    <li><strong>合作咨询</strong>——见下。</li>
+    <li><strong>Corrections</strong> — factual errors, stale numbers, holes in the methodology. These always get a reply.</li>
+    <li><strong>Counter-results</strong> — you got a different outcome with the same tool. Tell me your environment and version.</li>
+    <li><strong>Suggestions</strong> — a tool you'd like tested. I only write about things I'd actually use, but I'm listening.</li>
+    <li><strong>Partnership enquiries</strong> — see below.</li>
   </ul>
 
-  <h2>关于商务合作</h2>
+  <h2>If you make a product</h2>
   <p>
-    如果你是产品方：我接受提供试用账号，但<strong>不接受付费换好评</strong>。
-    提供试用不保证会写，写了也不保证是正面结论。任何付费内容都会明确标注为赞助，
-    并与常规测评分开。具体规则见<a href="/affiliate-disclosure/">联盟披露</a>。
+    I'll accept a trial account. I <strong>won't accept payment for a positive review</strong>. A trial doesn't guarantee coverage, and coverage doesn't guarantee a favourable conclusion. Anything paid gets labelled as sponsored and kept separate from regular testing — the rules are in the <a href="/affiliate-disclosure/">affiliate disclosure</a>.
   </p>
 
-  <h2>这些不用发</h2>
+  <h2>Please don't send</h2>
   <ul>
-    <li>友情链接互换、外链买卖、访客投稿代发。</li>
-    <li>AI 生成的推广稿。</li>
-    <li>与本站主题无关的推广——这里只写 AI 工具与工作流。</li>
+    <li>Link exchanges, paid backlinks, or guest posts.</li>
+    <li>AI-generated pitches.</li>
+    <li>Promotions unrelated to this site's subject — it's AI tools and workflows here, nothing else.</li>
   </ul>
 </Base>

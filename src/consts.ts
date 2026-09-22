@@ -1,34 +1,30 @@
 // ───────────────────────────────────────────────────────────────
-// 全站唯一配置源。换域名 / 改站名 只动这个文件。
-// 部署前必改：url、email
+// 全站唯一配置源。改站名 / tagline / 导航都只动这个文件。
 // ───────────────────────────────────────────────────────────────
 export const SITE = {
   name: 'MossBySea',
-  // 中文副标题，出现在首页和 <meta description>
-  tagline: '用 AI 工具真实干活的记录',
+  tagline: 'Testing AI tools on real work',
   description:
-    '记录用 AI 编程与 Agent 工具完成真实工作的过程：实测、对比、踩坑，以及支撑这套工作流的硬件环境。',
-  // ⚠️ 部署前替换成你的真实域名（不带结尾斜杠）
+    'Hands-on records of using AI coding and agent tools to finish actual work: head-to-head comparisons, what broke, and the hardware behind the workflow.',
   url: 'https://mossbysea.com',
-  // ⚠️ 用域名邮箱，不要用 Gmail —— 联盟网络审核会看
   email: 'hello@mossbysea.com',
-  author: 'Yuan',
-  lang: 'zh-CN',
-  locale: 'zh_CN',
+  author: 'Moss',
+  lang: 'en',
+  locale: 'en_US',
 } as const;
 
 // 导航。/setup/ 暂不上线（见 README「阶段规划」），
 // 等 /tools/ 满 10 篇后把下面这行的注释去掉。
 export const NAV = [
-  { href: '/tools/', label: 'AI 工具' },
-  // { href: '/setup/', label: '工作流环境' },
-  { href: '/about/', label: '关于' },
+  { href: '/tools/', label: 'AI Tools' },
+  // { href: '/setup/', label: 'Workflow Setup' },
+  { href: '/about/', label: 'About' },
 ] as const;
 
 export const FOOTER_NAV = [
-  { href: '/about/', label: '关于' },
-  { href: '/contact/', label: '联系' },
-  { href: '/affiliate-disclosure/', label: '联盟披露' },
-  { href: '/privacy/', label: '隐私政策' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/affiliate-disclosure/', label: 'Affiliate Disclosure' },
+  { href: '/privacy/', label: 'Privacy' },
   { href: '/rss.xml', label: 'RSS' },
 ] as const;
