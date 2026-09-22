@@ -1,0 +1,12 @@
+---
+import { SITE, FOOTER_NAV } from '../consts';
+const year = new Date().getFullYear();
+---
+<footer class="site-foot">
+  <nav>
+    {FOOTER_NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <p>
+    © {year} {SITE.author} · {SITE.name}　本站包含联盟链接，详见<a href="/affiliate-disclosure/">联盟披露</a>。
+  </p>
+</footer>

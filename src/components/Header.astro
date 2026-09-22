@@ -1,0 +1,9 @@
+---
+import { SITE, NAV } from '../consts';
+---
+<header class="site-head">
+  <a class="brand" href="/">{SITE.name}</a>
+  <nav>
+    {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+  </nav>
+</header>

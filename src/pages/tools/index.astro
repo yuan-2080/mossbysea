@@ -1,0 +1,66 @@
+---
+// ─────────────────────────────────────────────────────────────
+// 支柱页（pillar page）。
+// 作用：① 承接 cluster 的主关键词 ② 向下分发权重到每篇文章
+// 规则：每写一篇新文章，在下面对应分组里加一行链接。
+// ─────────────────────────────────────────────────────────────
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('tools', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const GROUPS = [
+  { kind: 'comparison', label: '对比测评', blurb: '同一个真实任务，横向跑几个工具，看差在哪。' },
+  { kind: 'hands-on', label: '实战记录', blurb: '一个具体项目从零跑通的完整过程，含踩坑。' },
+  { kind: 'guide', label: '上手指南', blurb: '从装到能用的最短路径。' },
+] as const;
+
+const byKind = (k: string) => posts.filter((p) => p.data.kind === k);
+---
+<Base
+  title="AI 工具实测"
+  description="AI 编程与 Agent 工具的实测记录：对比测评、实战踩坑、上手指南。所有结论来自真实工作任务，不是功能罗列。"
+>
+  <h1>AI 工具实测</h1>
+  <p class="lede">
+    这里是本站的主线。每篇都围绕一个<strong>真实工作任务</strong>展开——
+    我拿工具去干一件本来就要干的活，然后记录它做到了什么、卡在哪、值不值得付钱。
+  </p>
+
+  <h2>怎么测的</h2>
+  <p>
+    为了让不同文章之间可比，所有测评遵循同一套方法：
+  </p>
+  <ul>
+    <li><strong>同任务</strong>——横向对比时，几个工具跑的是同一个任务，不换题目。</li>
+    <li><strong>真项目</strong>——任务来自我实际在做的工作，不是为了写文章造的 demo。</li>
+    <li><strong>记失败</strong>——跑砸的部分照写。只写成功案例的测评没有信息量。</li>
+    <li><strong>标成本</strong>——含订阅价、token 消耗、以及我花掉的时间。</li>
+    <li><strong>标时效</strong>——这类工具几周一变，每篇标注测试日期和版本号。</li>
+  </ul>
+  <p class="meta">完整的方法说明和利益披露见<a href="/about/">关于</a>页。</p>
+
+  {GROUPS.map((g) => {
+    const list = byKind(g.kind);
+    return (
+      <section>
+        <h2>{g.label}</h2>
+        <p>{g.blurb}</p>
+        {list.length === 0 ? (
+          <p class="meta">这一组还没有文章。</p>
+        ) : (
+          <ul class="post-list">
+            {list.map((post) => (
+              <li>
+                <a class="title" href={`/tools/${post.id}/`}>{post.data.title}</a>
+                <p>{post.data.description}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    );
+  })}
+</Base>

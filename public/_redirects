@@ -1,0 +1,4 @@
+# Cloudflare Pages 跳转规则。格式： 来源  目标  状态码
+# 换过 slug 的文章在这里加 301，别让旧链接 404 —— 页面权重是累积的。
+# 例：
+# /tools/old-slug  /tools/new-slug  301

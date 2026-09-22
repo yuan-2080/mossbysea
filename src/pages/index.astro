@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE } from '../consts';
+import Base from '../layouts/Base.astro';
+
+const posts = (await getCollection('tools', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const KIND_LABEL: Record<string, string> = {
+  comparison: '对比测评',
+  'hands-on': '实战记录',
+  guide: '上手指南',
+  hardware: '硬件环境',
+};
+const fmt = (d: Date) =>
+  new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium' }).format(d);
+---
+<Base>
+  <h1>{SITE.tagline}</h1>
+  <p class="lede">
+    我在一家互联网公司做内容与数据。这个站记录我用 AI 编程和 Agent 工具完成真实工作的过程——
+    不是功能罗列，是把一个具体任务跑通（或跑砸）之后的复盘。
+  </p>
+  <p>
+    所有结论都来自我自己的机器和自己的活儿。写法见<a href="/about/">关于</a>，
+    收入来源见<a href="/affiliate-disclosure/">联盟披露</a>。
+  </p>
+
+  <h2>最新</h2>
+  {posts.length === 0 ? (
+    <p class="meta">还没有文章。把第一篇写完后它会出现在这里。</p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a class="title" href={`/tools/${post.id}/`}>{post.data.title}</a>
+          <p>{post.data.description}</p>
+          <span class="meta">
+            <span class="kind">{KIND_LABEL[post.data.kind] ?? post.data.kind}</span>
+            　{fmt(post.data.pubDate)}
+          </span>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

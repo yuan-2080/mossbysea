@@ -1,0 +1,69 @@
+---
+import { SITE } from '../consts';
+import Base from './Base.astro';
+import AffiliateNotice from '../components/AffiliateNotice.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  kind: string;
+  affiliate?: boolean;
+  /** 同 cluster 的其他文章，用于内链 —— 这是 cluster 密度的关键 */
+  siblings?: { href: string; title: string }[];
+}
+const {
+  title, description, pubDate, updatedDate, kind,
+  affiliate = false, siblings = [],
+} = Astro.props;
+
+const KIND_LABEL: Record<string, string> = {
+  comparison: '对比测评',
+  'hands-on': '实战记录',
+  guide: '上手指南',
+  hardware: '硬件环境',
+};
+
+const fmt = (d: Date) =>
+  new Intl.DateTimeFormat('zh-CN', { dateStyle: 'medium' }).format(d);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': kind === 'comparison' ? 'Review' : 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
+  author: { '@type': 'Person', name: SITE.author },
+  publisher: { '@type': 'Organization', name: SITE.name },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+};
+---
+<Base title={title} description={description} ogType="article">
+  <article>
+    <h1>{title}</h1>
+    <p class="meta">
+      <span class="kind">{KIND_LABEL[kind] ?? kind}</span>
+      　{fmt(pubDate)}
+      {updatedDate && <> · 更新于 {fmt(updatedDate)}</>}
+    </p>
+
+    {affiliate && <AffiliateNotice />}
+
+    <slot />
+
+    {siblings.length > 0 && (
+      <nav class="cluster-rail">
+        <h4>同系列</h4>
+        <ul>
+          {siblings.map((s) => (
+            <li><a href={s.href}>{s.title}</a></li>
+          ))}
+        </ul>
+      </nav>
+    )}
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+</Base>

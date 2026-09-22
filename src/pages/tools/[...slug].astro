@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import Post from '../../layouts/Post.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('tools', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      // 同 cluster 的其他文章 —— 内链密度靠这个自动维持
+      siblings: posts
+        .filter((p) => p.id !== post.id)
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+        .slice(0, 5)
+        .map((p) => ({ href: `/tools/${p.id}/`, title: p.data.title })),
+    },
+  }));
+}
+
+const { post, siblings } = Astro.props;
+const { Content } = await render(post);
+---
+<Post {...post.data} siblings={siblings}>
+  <Content />
+</Post>
