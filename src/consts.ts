@@ -3,15 +3,15 @@
 // 部署前必改：url、email
 // ───────────────────────────────────────────────────────────────
 export const SITE = {
-  name: 'Runbook',
+  name: 'MossBySea',
   // 中文副标题，出现在首页和 <meta description>
   tagline: '用 AI 工具真实干活的记录',
   description:
     '记录用 AI 编程与 Agent 工具完成真实工作的过程：实测、对比、踩坑，以及支撑这套工作流的硬件环境。',
   // ⚠️ 部署前替换成你的真实域名（不带结尾斜杠）
-  url: 'https://REPLACE-ME.com',
+  url: 'https://mossbysea.com',
   // ⚠️ 用域名邮箱，不要用 Gmail —— 联盟网络审核会看
-  email: 'hello@REPLACE-ME.com',
+  email: 'hello@mossbysea.com',
   author: 'Yuan',
   lang: 'zh-CN',
   locale: 'zh_CN',

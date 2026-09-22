@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://REPLACE-ME.com/sitemap-index.xml
+Sitemap: https://mossbysea.com/sitemap-index.xml
