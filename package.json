@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "deploy": "astro build && npx wrangler pages deploy dist"
+    "deploy": "astro build && npx wrangler pages deploy dist",
+    "check:leak": "bash scripts/check-leak.sh"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",

@@ -5,3 +5,6 @@ dist/
 .env
 .env.production
 npm-debug.log*
+
+# 敏感词表（含雇主与行业术语，不进公开仓库）
+scripts/leak-words.txt

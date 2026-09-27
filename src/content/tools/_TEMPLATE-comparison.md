@@ -19,8 +19,10 @@ draft: true
 ═══════════════════════════════════════════════════════════════
 -->
 
-> **Tested** 2026-09-22 · **Versions** Claude Code x.x, Cursor x.x, Codex CLI x.x
+> **Tested** 2026-09-22 · **Versions** Claude Code x.x, Cursor x.x, Codex CLI x.x\
 > **Machine** macOS 15, M4 Pro, 32 GB
+
+<!-- ↑ 行尾的反斜杠是 markdown 的强制换行。没有它这几行会连成一段。 -->
 
 <!-- ↑ 时效标注。这类工具几周一变，没有日期和版本号的测评三个月后就是错的。
      这一条也是 E-E-A-T 信号：说明作者知道自己在测什么。 -->
