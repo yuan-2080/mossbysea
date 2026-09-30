@@ -117,9 +117,9 @@ is the number that matters in practice and is almost never reported.
 
 ## The methodological problem, stated up front
 
-By the third tool the author knows this task considerably better than at the
-first. Prompting improves, error reports get sharper, and the third tool gets
-an advantage that has nothing to do with the tool.
+By the second tool the author knows this task better than at the first.
+Prompting improves, error reports get sharper, and whichever tool goes second
+gets an advantage that has nothing to do with the tool.
 
 Nearly every published comparison has this problem. Very few mention it.
 
@@ -128,9 +128,9 @@ Mitigations used here:
 - The prompt is fixed in writing and pasted verbatim, which removes the
   largest channel for the effect.
 - **The running order is disclosed** in the write-up.
-- **Control run:** after the third tool, the first tool is run again from a
-  clean directory. If its score or rework count changes materially, order
-  effects are real and measurable, and that measurement is reported.
+- **Control run:** after the second tool, the first is run again from a clean
+  directory. If its score or rework count changes materially, the order effect
+  is real and measurable, and that measurement is reported.
 
 The control run costs one extra pass. It is the only part of this protocol
 that produces evidence about the protocol itself.
@@ -139,27 +139,23 @@ that produces evidence about the protocol itself.
 
 ## Tools under test
 
-Three terminal agents, one from each of the three major labs. Versions recorded
-at install time, 2026-10-01:
+Two terminal agents, two vendors, two pricing models. Versions recorded at
+install time, 2026-10-01:
 
-| Slot | Tool | Version | Vendor | Access used |
-|---|---|---|---|---|
-| 1 | Claude Code | 2.1.238 | Anthropic | Existing subscription |
-| 2 | Codex CLI | 0.159.2 | OpenAI | ChatGPT sign-in, or API key |
-| 3 | Antigravity CLI (`agy`) | 1.2.14 | Google | Individual tier, $0 |
+| Tool | Version | Vendor | Access used |
+|---|---|---|---|
+| Claude Code | 2.1.238 | Anthropic | Paid subscription |
+| Antigravity CLI (`agy`) | 1.2.14 | Google | Individual tier, $0 |
 
-**Interaction model is held constant on purpose.** All three take a prompt in a
+**Interaction model is held constant on purpose.** Both take a prompt in a
 terminal and run their own loop. That removes the largest confound in this kind
 of comparison: an IDE-native tool spends real time on per-step approval, which
-inflates elapsed time for architectural rather than capability reasons, and
-makes the number incomparable.
+inflates elapsed time for architectural rather than capability reasons and
+makes the number incomparable. IDE-native versus terminal-native is a real
+question, but it is a different benchmark — the two cannot share one stopwatch.
 
-Cursor was considered and deliberately excluded for that reason. IDE-native
-versus terminal-native is a real and interesting question; it is a different
-benchmark, because the two cannot share one stopwatch.
-
-Gemini CLI was the original slot 3. It was dropped mid-setup — see
-[Changes to this spec](#changes-to-this-spec).
+A head-to-head also costs less to run honestly than a three-way: one control
+pass instead of a cascade of learning effects.
 
 ### Invocation
 
@@ -169,7 +165,6 @@ with permission prompts auto-approved so that approval latency is not measured.
 | Tool | Interactive | Non-interactive | Auto-approve |
 |---|---|---|---|
 | Claude Code | `claude` | `claude -p` | `--dangerously-skip-permissions` |
-| Codex CLI | `codex` | `codex exec` | `--dangerously-bypass-approvals-and-sandbox` |
 | Antigravity | `agy` | `agy -p` / `--print` | `--dangerously-skip-permissions` |
 
 Runs are interactive, because the acceptance checks need the author to inspect
@@ -188,44 +183,7 @@ Not yet run.
 | Tool | Score | Rework | Elapsed | Cost | Stuck on |
 |---|---|---|---|---|---|
 | Claude Code 2.1.238 | — | — | — | — | — |
-| Codex CLI 0.159.2 | — | — | — | — | — |
 | Antigravity CLI 1.2.14 | — | — | — | — | — |
-| *Control re-run, tool 1* | — | — | — | — | — |
+| *Control re-run, first tool* | — | — | — | — | — |
 
 Running order: to be recorded.
-
----
-
-## Changes to this spec
-
-Kept because the changes are themselves a finding about how fast this tooling
-moves.
-
-**2026-10-01 — Gemini CLI removed before the first run.**
-
-The spec originally listed Gemini CLI as slot 3, with a note to *"verify current
-quota before starting; reporting on it has been inconsistent."* Sources
-disagreed: some described a free tier of 1,000 requests a day, others said free
-serving had ended.
-
-Installing it settled the question. `gemini` 0.62.0 installed fine, and
-"Sign in with Google" returned:
-
-```
-Failed to sign in. Message: This client is no longer supported for Gemini Code
-Assist for individuals. To continue using Gemini, please migrate to the
-Antigravity suite of products: https://antigravity.google
-```
-
-Google ended consumer access to Gemini CLI and the Gemini Code Assist IDE
-extensions on 2026-06-18. Antigravity is the successor, its Individual tier is
-$0, and it ships a terminal CLI — so slot 3 moved there rather than to a
-different vendor.
-
-The warning in the spec was written and invalidated the same day.
-
-**2026-10-01 — Cursor replaced by Codex CLI.**
-
-Changing slot 3 to another terminal agent made a three-CLI lineup possible, and
-holding the interaction model constant is worth more to this benchmark than
-covering the IDE category. See [Tools under test](#tools-under-test).
