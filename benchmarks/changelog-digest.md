@@ -139,18 +139,45 @@ that produces evidence about the protocol itself.
 
 ## Tools under test
 
-| Slot | Tool | Architecture | Notes |
+Three terminal agents, one from each of the three major labs. Versions recorded
+at install time, 2026-10-01:
+
+| Slot | Tool | Version | Vendor | Access used |
+|---|---|---|---|---|
+| 1 | Claude Code | 2.1.238 | Anthropic | Existing subscription |
+| 2 | Codex CLI | 0.159.2 | OpenAI | ChatGPT sign-in, or API key |
+| 3 | Antigravity CLI (`agy`) | 1.2.14 | Google | Individual tier, $0 |
+
+**Interaction model is held constant on purpose.** All three take a prompt in a
+terminal and run their own loop. That removes the largest confound in this kind
+of comparison: an IDE-native tool spends real time on per-step approval, which
+inflates elapsed time for architectural rather than capability reasons, and
+makes the number incomparable.
+
+Cursor was considered and deliberately excluded for that reason. IDE-native
+versus terminal-native is a real and interesting question; it is a different
+benchmark, because the two cannot share one stopwatch.
+
+Gemini CLI was the original slot 3. It was dropped mid-setup — see
+[Changes to this spec](#changes-to-this-spec).
+
+### Invocation
+
+Each tool is driven the same way: a single prompt, then the tool's own loop,
+with permission prompts auto-approved so that approval latency is not measured.
+
+| Tool | Interactive | Non-interactive | Auto-approve |
 |---|---|---|---|
-| 1 | Claude Code | Terminal agent, high autonomy | |
-| 2 | Cursor | IDE-native, step-by-step approval | |
-| 3 | Gemini CLI | Terminal agent, open source, different vendor | Free tier — **verify current quota before starting**, reporting on it has been inconsistent |
+| Claude Code | `claude` | `claude -p` | `--dangerously-skip-permissions` |
+| Codex CLI | `codex` | `codex exec` | `--dangerously-bypass-approvals-and-sandbox` |
+| Antigravity | `agy` | `agy -p` / `--print` | `--dangerously-skip-permissions` |
 
-The three span a deliberate spread: two terminal agents from different vendors,
-one IDE-native tool. Slot 3 is free to run, so the comparison can be reproduced
-at no cost for at least one contender.
+Runs are interactive, because the acceptance checks need the author to inspect
+output between rounds. The non-interactive forms are listed so the run can be
+scripted by anyone reproducing it.
 
-Codex CLI was considered for slot 3 and dropped. It remains one of the three
-*data sources*, which is unrelated to it being under test.
+Each tool uses its **default model**. Model choice is part of what a tool is,
+and normalising it would measure something else.
 
 ---
 
@@ -160,9 +187,45 @@ Not yet run.
 
 | Tool | Score | Rework | Elapsed | Cost | Stuck on |
 |---|---|---|---|---|---|
-| Claude Code | — | — | — | — | — |
-| Cursor | — | — | — | — | — |
-| Gemini CLI | — | — | — | — | — |
-| Claude Code (control) | — | — | — | — | — |
+| Claude Code 2.1.238 | — | — | — | — | — |
+| Codex CLI 0.159.2 | — | — | — | — | — |
+| Antigravity CLI 1.2.14 | — | — | — | — | — |
+| *Control re-run, tool 1* | — | — | — | — | — |
 
 Running order: to be recorded.
+
+---
+
+## Changes to this spec
+
+Kept because the changes are themselves a finding about how fast this tooling
+moves.
+
+**2026-10-01 — Gemini CLI removed before the first run.**
+
+The spec originally listed Gemini CLI as slot 3, with a note to *"verify current
+quota before starting; reporting on it has been inconsistent."* Sources
+disagreed: some described a free tier of 1,000 requests a day, others said free
+serving had ended.
+
+Installing it settled the question. `gemini` 0.62.0 installed fine, and
+"Sign in with Google" returned:
+
+```
+Failed to sign in. Message: This client is no longer supported for Gemini Code
+Assist for individuals. To continue using Gemini, please migrate to the
+Antigravity suite of products: https://antigravity.google
+```
+
+Google ended consumer access to Gemini CLI and the Gemini Code Assist IDE
+extensions on 2026-06-18. Antigravity is the successor, its Individual tier is
+$0, and it ships a terminal CLI — so slot 3 moved there rather than to a
+different vendor.
+
+The warning in the spec was written and invalidated the same day.
+
+**2026-10-01 — Cursor replaced by Codex CLI.**
+
+Changing slot 3 to another terminal agent made a three-CLI lineup possible, and
+holding the interaction model constant is worth more to this benchmark than
+covering the IDE category. See [Tools under test](#tools-under-test).
