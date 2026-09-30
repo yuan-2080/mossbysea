@@ -99,10 +99,12 @@ Use `git rev-list main`, not `--all`. `--all` includes the backup refs that a hi
 Less severe, easy to miss. The first commits here were authored by:
 
 ```
-yuan <yuan@MacBook-Air-4.local>
+alex <alex@laptop.local>
 ```
 
 Not a real address — that's git's fallback when `user.email` was never configured. It leaks a first name and a machine model, and it's stamped on every commit forever.
+
+(That example is anonymised. Publishing my actual one here would have reproduced the leak inside the post about the leak, and my own word list didn't catch it on the first pass — `yuan` and `MacBook` weren't in it. Add your own name and machine to the list; the obvious entries are the ones you forget.)
 
 Set it per-repository, so it doesn't depend on remembering:
 
