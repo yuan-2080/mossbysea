@@ -1,6 +1,6 @@
 ---
 title: 'Putting a blog on Cloudflare in 2026: eight things that broke'
-description: 'A static Astro site, a $10 domain, a working inbox — about two hours end to end. Most of that time went into eight problems no tutorial mentions, including one where following the standard advice took my www subdomain down.'
+description: 'A static Astro site, a $10 domain and a working inbox in an afternoon. Most of that time went into eight problems no tutorial mentions.'
 pubDate: 2026-09-27
 kind: guide
 tags: ['Cloudflare', 'Astro', 'static site', 'DNS', 'email']

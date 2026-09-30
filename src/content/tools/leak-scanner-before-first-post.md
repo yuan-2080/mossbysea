@@ -1,6 +1,6 @@
 ---
 title: 'The four places my leak scanner did not look'
-description: 'I wrote a forty-line leak scanner before publishing anything here. The scanner was the easy part — git history, screenshot pixels, image metadata and the build output are where things actually leaked.'
+description: 'A forty-line leak scanner, written before I published anything. The scanner was the easy part: git history and screenshots are where things leaked.'
 pubDate: 2026-09-30
 kind: hands-on
 tags: ['privacy', 'git', 'bash', 'publishing']
