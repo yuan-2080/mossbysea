@@ -12,6 +12,10 @@ draft: false
 > **Stack** Claude Code skill · Google Search Central as the only source\
 > **Result** three findings on my own site, one of them my own fault
 
+Google specifies no character limit for page titles. Every SEO tool reports a long one as an error, in the same red as a missing `<title>`.
+
+Four days before building this, I had repeated that rule myself — in writing, as though Google had said it. It does not say it, and that is the kind of thing this skill exists to catch.
+
 Run any site through an SEO tool and you get a list of red crosses. Somewhere in that list, presented identically, are three completely different kinds of statement:
 
 1. Things Google **requires**, where failing means the page cannot be indexed.

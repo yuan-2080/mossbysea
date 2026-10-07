@@ -12,6 +12,10 @@ draft: false
 > **Stack** Astro 5 static build · Cloudflare Workers with static assets · Cloudflare Registrar · Cloudflare Email Routing\
 > **Total cost** $10.46/year, all in
 
+Every tutorial tells you to switch off the `workers.dev` subdomain once your real domain works. I did, and it took `www` down with it — a CNAME was still pointing at the thing I had just killed. Error 1016, caused by following good advice.
+
+That was one of eight.
+
 This site went from an empty folder to a live domain with a working inbox in an afternoon. The building part was fast. The part that ate the time was eight specific things going wrong, and most of them are not in any tutorial I could find — one of them is actively caused by advice that's everywhere.
 
 Writing them down while they're fresh.

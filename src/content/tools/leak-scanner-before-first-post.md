@@ -12,6 +12,10 @@ draft: false
 > **Stack** ~40 lines of bash · a gitignored word list · one npm script\
 > **Outcome** four real leaks found, three of them somewhere the scanner never looked
 
+The scanner came back clean. Then I checked git history and found the word I had deleted — sitting inside the commit that deleted it, public and permanent on a public repo.
+
+A clean working tree tells you nothing. It is the one version of your repository guaranteed to be tidy, because it is the version you have been editing.
+
 I write here under a name, about work I do at a company. Those two facts don't sit together on their own. The site is deliberately unaffiliated — no employer named, no industry named, nothing about the products I work on. Holding that line by *remembering to* is not a plan. So before the first post went up, I wrote a scanner.
 
 The scanner took twenty minutes. Finding out what it misses took considerably longer, and this post is mostly about that.

@@ -12,9 +12,16 @@ draft: false
 > **Versions** Muse Code 1.4.3 (1.4.3-R5018.1) · Claude Code 2.1.238\
 > **Scope** installed and inspected; **not** authenticated, so no task was run
 
-Meta shipped Muse Code on 5 August 2026 and took it out of beta on 1 September.
-It is a terminal coding agent: same shape as Claude Code, same shape as Codex
-CLI. Installed on macOS it is one Homebrew cask and a binary called `muse`.
+Meta's coding agent ships twenty built-in skills. Four of them exist for one
+purpose: moving you off Claude Code or Codex. Unfinished sessions, memory notes,
+MCP server configuration, rules, skills — five entry points, documented inside
+the agent's own skill descriptions so the model offers them unprompted.
+
+Claude Code ships no `resume-muse`.
+
+Muse Code launched on 5 August 2026 and left beta on 1 September. It is a
+terminal coding agent: same shape as Claude Code, same shape as Codex CLI. On
+macOS it is one Homebrew cask and a binary called `muse`.
 
 I installed it, read its entire surface, and ran the one thing that can be run
 without credentials. That last part turned out to be the interesting bit.
