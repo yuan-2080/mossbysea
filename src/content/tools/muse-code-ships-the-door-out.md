@@ -137,26 +137,44 @@ in the same list as the noise and read as noise.
 Two terminal agents, same category. The differences in surface are where the
 design shows.
 
-**Reasoning effort has eight tiers, not four.**
+**Reasoning effort has more tiers.** Each value below was read out of the tool
+itself, by passing a deliberately invalid one and letting it print the list:
 
 ```
-Muse Code    none | minimal | low | medium | high | xhigh | max | ultra
-Claude Code  low | medium | high | max
+Muse Code    none | minimal | low | medium | high | xhigh | max | ultra    (8)
+Claude Code  low | medium | high | xhigh | max                            (5)
+Antigravity  low | medium | high | max                                    (4)
 ```
 
-Whether eight is better than four is an empirical question I cannot answer
-here. What it signals is a product expecting you to tune cost per task rather
-than pick a setting once.
+Whether eight beats five is an empirical question I cannot answer here. The
+spread at the bottom is the interesting bit: only Muse offers `none` and
+`minimal`, which is a product expecting you to turn reasoning down for cheap
+work rather than only up for hard work.
 
-**Git worktrees are a top-level flag.**
+**Permission models differ in kind, not degree.**
+
+```
+Claude Code  --permission-mode  acceptEdits | auto | bypassPermissions |
+                                manual | dontAsk | plan                   (6)
+Antigravity  --mode             accept-edits | plan                       (2)
+Muse Code    --permission-profile <ID>        named profiles, not an enum
+```
+
+Muse is the only one that treats permissions as a named, presumably shareable
+profile rather than a per-session switch — which fits an enterprise story, and
+`muse config` validating "enterprise configuration documents" points the same
+way.
+
+**Git worktrees are a top-level flag in both** Muse Code and Claude Code, so
+this is a category convention rather than a differentiator:
 
 ```bash
-muse -w                           # create a worktree for this session
-muse --worktree existing --worktree-existing <path>
-muse --worktree-base <ref>
+muse   -w / --worktree off|create|existing  --worktree-base  --worktree-existing
+claude -w / --worktree [name]               --tmux
 ```
 
-Isolation for parallel agents is on the front door, not behind a setting.
+Muse exposes more knobs; Claude Code can drop the worktree straight into a tmux
+session. I did not find an equivalent in Antigravity's help.
 
 **It has its own wire protocol.** `muse schema` exports an "MSP wire schema" as
 JSON Schema or TypeScript, and `muse serve` runs an MSP session host over
@@ -232,10 +250,18 @@ to offer it.
 
 ---
 
-**Correction, 2026-10-07.** The first version of this post said Claude Code
-ships no equivalent importer. That was wrong: `claude import [codex|gemini]`
-exists, with `--dry-run`, and I had not checked before publishing. The section
-above has been rewritten with what it actually does, and the conclusion changed
-as a result — migration tooling is standard in this category, and the finding
-is about coverage and about which competitors each vendor names, not about Meta
-being alone in shipping it.
+**Corrections, 2026-10-07.** Three, all the same mistake: I explored Muse Code
+properly and compared it against what I assumed about Claude Code instead of
+checking.
+
+1. The post said Claude Code ships no equivalent importer. It does —
+   `claude import [codex|gemini]`, with `--dry-run`. The conclusion changed as
+   a result: migration tooling is standard in this category, and the finding is
+   about coverage and about which competitors each vendor names.
+2. Claude Code's effort tiers were given as four. There are five — `xhigh` was
+   missing. The lists above are now read out of each tool directly.
+3. Git worktrees were presented as a Muse Code design signal. Claude Code has
+   `-w/--worktree` too, so it is a category convention.
+
+The common failure: every "A has X and B doesn't" needs a command run against
+B. One-sided evidence reads exactly like research until someone checks.
