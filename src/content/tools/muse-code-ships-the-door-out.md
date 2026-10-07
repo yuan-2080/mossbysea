@@ -17,7 +17,7 @@ purpose: moving you off Claude Code or Codex. Unfinished sessions, memory notes,
 MCP server configuration, rules, skills — five entry points, documented inside
 the agent's own skill descriptions so the model offers them unprompted.
 
-Claude Code ships no `resume-muse`.
+Claude Code ships an importer too — for Codex and Gemini, not for Muse.
 
 Muse Code launched on 5 August 2026 and left beta on 1 September. It is a
 terminal coding agent: same shape as Claude Code, same shape as Codex CLI. On
@@ -65,7 +65,26 @@ The `migrate` skill even routes you correctly between the options — session
 transcripts go to `resume-claude`, MCP servers and memory go to `migrate`,
 skills go to `skills import`. Somebody drew that decision tree deliberately.
 
-I have not seen the reverse anywhere. Claude Code ships no `resume-muse`.
+### The reverse exists, and is narrower
+
+Claude Code ships `claude import [codex|gemini]`, also with `--dry-run`. Run
+against my own machine it found three MCP servers in a Codex config, listed
+seven config keys with no mapping, and offered to write a reference skill
+documenting the unmapped items for manual porting — a nicer failure mode than
+dropping them.
+
+What it does not accept is `muse`. The usage line is `[codex|gemini]`.
+
+So importers are table stakes in this category, not a Meta tactic. The
+interesting part is **which competitors each one names.** Claude Code imports
+from Codex and Gemini — the agents it was competing with when that code was
+written. Muse Code imports from Claude Code and Codex — the ones it is
+competing with now. Each vendor's importer is a list of who they want your
+users to be leaving.
+
+The difference that remains is coverage. Claude Code's is one command over
+config and MCP servers. Muse Code's is five entry points over unfinished
+sessions, memory notes, MCP servers, rules and skills.
 
 ## Pointing it at my own setup
 
@@ -207,4 +226,16 @@ competitor, the importer handles sessions and memory and MCP servers and rules
 and skills, and the pricing undercuts by an order of magnitude if you will pay
 in code.
 
-That is a switching strategy, and it is unusually explicit about it.
+That is a switching strategy. Every vendor in this category now ships one;
+what is unusual here is the surface area, and that the agent itself is told
+to offer it.
+
+---
+
+**Correction, 2026-10-07.** The first version of this post said Claude Code
+ships no equivalent importer. That was wrong: `claude import [codex|gemini]`
+exists, with `--dry-run`, and I had not checked before publishing. The section
+above has been rewritten with what it actually does, and the conclusion changed
+as a result — migration tooling is standard in this category, and the finding
+is about coverage and about which competitors each vendor names, not about Meta
+being alone in shipping it.
