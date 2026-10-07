@@ -63,7 +63,7 @@ the same command was run three times.
 | **OS sandbox** | no flag | `muse sandbox` + `--sandbox-network` | `--sandbox` |
 | **Git worktree** | `-w` + `--tmux` | `-w` with `off\|create\|existing`, `--worktree-base` | not found |
 | **MCP management** | full CRUD in CLI | **OAuth only** — servers hand-edited in `settings.json` | full CRUD in CLI |
-| **Imports from** | `codex`, `gemini` | `claude`, `codex` | not found |
+| **Imports from** | `codex`, `gemini` | `claude`, `codex` | `claude`, `gemini` |
 | **Own wire protocol** | — | **MSP**, with `schema` export + `serve` | — |
 | **Project concept** | — | — | **`--project` / `--new-project`** |
 
@@ -161,6 +161,34 @@ the tool's own controls are the permission modes.
 Six permission values instead of two or a profile ID starts to look like a
 deliberate trade rather than an accident.
 
+## Everyone imports from everyone, except the newest
+
+All three ship a competitor importer. Laid out as a matrix, the pattern is
+clearer than any single row:
+
+<div class="table-wrap">
+
+| ↓ imports from → | Codex | Gemini | Claude Code | Muse Code |
+|---|---|---|---|---|
+| **Claude Code** | ✓ | ✓ | — | ✗ |
+| **Muse Code** | ✓ | ✗ | ✓ | — |
+| **Antigravity** | ✗ | ✓ | ✓ | — |
+
+</div>
+
+Two things fall out of it. **Nobody imports from Muse Code**, which launched in
+August and has not yet become something worth harvesting. And every vendor's
+source list is a list of the incumbents it wants your users to be leaving —
+Antigravity imports from Gemini because it *is* the Gemini CLI's successor, and
+from Claude Code because that is where the users are.
+
+The commands are not symmetric in depth. Claude Code's walks config and MCP
+servers and writes a reference skill for anything it cannot map. Muse Code's
+spans five entry points including unfinished session state. Antigravity's
+`agy plugin import claude|gemini` handles plugins, and on my machine reported
+*"No claude extensions found"* despite an installed-plugins directory being
+present — so either it looks elsewhere or it wants a format I do not have.
+
 ## One each that the others don't have
 
 **Muse Code — its own wire protocol.** `muse schema` exports an MSP schema as
@@ -189,3 +217,11 @@ correlates with the product's intent and not necessarily with its competence.
 Three snapshots on one day, too. Muse Code left beta five weeks ago;
 Antigravity's CLI is newer than that. Checking these numbers against the
 versions at the top is the first thing to do before trusting any of them.
+
+---
+
+**Correction, 2026-10-07.** The table first said Antigravity has no competitor
+importer. It does — `agy plugin import claude|gemini`. I had checked `agy
+--help` and not the sub-subcommands, so the same class of mistake as last time,
+one level deeper. The row is fixed and the matrix above was added because the
+complete picture is more interesting than the row was.
