@@ -65,7 +65,7 @@ the same command was run three times.
 | **MCP management** | full CRUD in CLI | **OAuth only** — servers hand-edited in `settings.json` | full CRUD in CLI |
 | **Imports from** | `codex`, `gemini` | `claude`, `codex` | `claude`, `gemini` |
 | **Own wire protocol** | — | **MSP**, with `schema` export + `serve` | — |
-| **Project concept** | — | — | **`--project` / `--new-project`** |
+| **Project concept** | state container — `claude project purge` | — | session selector — `--project`, `--new-project` |
 
 </div>
 
@@ -196,10 +196,14 @@ JSON Schema or TypeScript; `muse serve` runs an MSP session host over stdio;
 `muse session-message` sends messages between sessions. Multi-agent
 coordination as a published contract, not an emergent pattern.
 
-**Antigravity — projects.** `--project` and `--new-project` make a project a
-first-class session attribute. Neither of the others has the concept at the CLI
-level; both are directory-scoped. It also ships `agy mic-serve`, which serves
-your machine's microphone to a CLI on another host, which I cannot place.
+**Antigravity — projects you select.** `--project <id|name>` and
+`--new-project` make a project a session attribute you choose at launch. Claude
+Code also has projects, but they mean something else: `claude project purge`
+deletes "all Claude Code state for a project (transcripts, tasks, file history,
+config entry)", so a project there is a state container keyed to a directory,
+not something you pick per session. Muse Code has neither. It also ships `agy
+mic-serve`, which serves your machine's microphone to a CLI on another host,
+which I cannot place.
 
 **Claude Code — eval.** `claude plugin eval` runs test cases against a plugin's
 skills. It is the only one of the three that ships a way to check whether the
@@ -220,8 +224,22 @@ versions at the top is the first thing to do before trusting any of them.
 
 ---
 
-**Correction, 2026-10-07.** The table first said Antigravity has no competitor
-importer. It does — `agy plugin import claude|gemini`. I had checked `agy
---help` and not the sub-subcommands, so the same class of mistake as last time,
-one level deeper. The row is fixed and the matrix above was added because the
-complete picture is more interesting than the row was.
+**Corrections, 2026-10-07.** Two rows were wrong, both the same way.
+
+1. **Antigravity has a competitor importer** — `agy plugin import
+   claude|gemini`. I had read `agy --help` and not its sub-subcommands. The
+   who-imports-from-whom matrix above was added afterwards, because the full
+   picture turned out to be more interesting than the row.
+2. **Claude Code has projects too** — `claude project purge` manages per-project
+   state. They are not the same concept as Antigravity's, which is a session
+   selector, but "neither of the others has it" was wrong.
+
+After the second one I stopped patching and re-ran every remaining row against
+all three tools, including sub-subcommands. Worktrees, sandboxing, MCP
+management, permission models, effort tiers and the wire-protocol row all
+survived that check unchanged.
+
+The pattern across all of today's errors, here and in the
+[previous post](/tools/muse-code-ships-the-door-out/): I keep verifying the tool
+I am curious about and inferring the others. A comparison table needs every cell
+run, not every row reasoned about.
