@@ -1,52 +1,103 @@
+/* ───────────────────────────────────────────────────────────────
+   MossBySea — design tokens + components
+   方向 C（card grid）。两条自我约束，用来抵消卡片式的两个固有风险：
+     1. featured 卡通栏 → 打破"所有条目一样大"，保住层级
+     2. 低饱和 chip、无阴影、无渐变、10px 圆角 → 不与内容农场同款
+   ─────────────────────────────────────────────────────────────── */
 :root {
+  /* surfaces */
   --bg: #fbfbfa;
   --surface: #ffffff;
+  --card: #ffffff;
+
+  /* ink */
   --ink: #16181d;
   --ink-2: #4a4f58;
   --ink-3: #868c96;
-  --rule: #e3e4e0;
+
+  /* dividers —— 刻意分两级。旧版全站只有 --rule，是"单调"的第一因 */
+  --rule: #e3e4e0;         /* 发丝线：列表内、表格格线 */
+  --rule-strong: #c6c9c2;  /* 章节线：标题块之后 */
+
+  /* accents —— 两个都取自 logo.svg，旧版只用了蓝 */
   --accent: #2a78d6;
   --accent-soft: #eaf1fb;
+  --green: #1baf7a;
+  --green-soft: #e4f7f0;
+
   --code-bg: #f4f5f2;
   --warn-bg: #fdf6e8;
   --warn-rule: #e8d9b0;
+
+  /* kind chips —— 低饱和：浅色底 + 同色系深字，不用高饱和药丸 */
+  --k-comparison-bg: #e8f1fd; --k-comparison-fg: #1a5fa5;
+  --k-hands-bg: #e4f7f0;      --k-hands-fg: #0f7350;
+  --k-guide-bg: #faf0dd;      --k-guide-fg: #8a6110;
+  --k-hardware-bg: #efeafc;   --k-hardware-fg: #5b3fb8;
+
+  /* 页面主题色（pillar 页的区分用） */
+  --line-tools: #2a78d6;
+  --line-setup: #1baf7a;
+
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-  --measure: 34rem;
+
+  --measure: 36rem;      /* 正文行宽 */
+  --shell: 46rem;        /* 无栅格页（散文页 / 文章页）*/
+  --shell-wide: 62rem;   /* 有栅格页（首页 / 支柱页）*/
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     --bg: #101113;
     --surface: #17181b;
+    --card: #17181b;
     --ink: #eceef1;
     --ink-2: #b0b5bd;
     --ink-3: #7d838d;
     --rule: #26282c;
+    --rule-strong: #3d4046;
     --accent: #6aa6ef;
     --accent-soft: #1a2433;
+    --green: #4fd4a4;
+    --green-soft: #102b22;
     --code-bg: #1b1d21;
     --warn-bg: #241f14;
     --warn-rule: #463b22;
+    --k-comparison-bg: #16243a; --k-comparison-fg: #8ec2f5;
+    --k-hands-bg: #102b22;      --k-hands-fg: #5fd3ac;
+    --k-guide-bg: #2c2314;      --k-guide-fg: #e0b567;
+    --k-hardware-bg: #241d3d;   --k-hardware-fg: #a894f0;
+    --line-tools: #6aa6ef;
+    --line-setup: #4fd4a4;
   }
 }
 :root[data-theme='dark'] {
   --bg: #101113;
   --surface: #17181b;
+  --card: #17181b;
   --ink: #eceef1;
   --ink-2: #b0b5bd;
   --ink-3: #7d838d;
   --rule: #26282c;
+  --rule-strong: #3d4046;
   --accent: #6aa6ef;
   --accent-soft: #1a2433;
+  --green: #4fd4a4;
+  --green-soft: #102b22;
   --code-bg: #1b1d21;
   --warn-bg: #241f14;
   --warn-rule: #463b22;
+  --k-comparison-bg: #16243a; --k-comparison-fg: #8ec2f5;
+  --k-hands-bg: #102b22;      --k-hands-fg: #5fd3ac;
+  --k-guide-bg: #2c2314;      --k-guide-fg: #e0b567;
+  --k-hardware-bg: #241d3d;   --k-hardware-fg: #a894f0;
+  --line-tools: #6aa6ef;
+  --line-setup: #4fd4a4;
 }
 
 * { box-sizing: border-box; }
-
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -59,29 +110,47 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 外壳宽度固定，header / footer 在任何页面对齐在同一位置。
+   只有 main 随内容收窄 —— 否则导航会随页面宽度左右跳。 */
 .shell {
-  max-width: 46rem;
+  max-width: var(--shell-wide);
   margin: 0 auto;
   padding-inline: 20px;
+}
+/* 没有卡片栅格的页面（散文页、文章页）把 main 收回到舒适行宽 */
+main:not(:has(.post-grid)) {
+  max-width: var(--shell);
+  margin-inline: auto;
 }
 
 /* ── header ─────────────────────────────────────────── */
 .site-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
-  padding-block: 2rem 1.25rem;
+  padding-block: 1.75rem 1.15rem;
   border-bottom: 1px solid var(--rule);
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.75rem;
 }
 .site-head .brand {
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 1.08rem;
+  letter-spacing: -0.015em;
   text-decoration: none;
   color: var(--ink);
 }
+/* logo.svg 里的标记以前只当 favicon 用，页头从没显示过 */
+.brand-mark { width: 26px; height: 26px; flex: 0 0 auto; display: block; }
+.brand-mark .mark-bg { fill: #16181d; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .brand-mark .mark-bg { fill: #eceef1; }
+}
+:root[data-theme='dark'] .brand-mark .mark-bg { fill: #eceef1; }
+
 .site-head nav {
   margin-left: auto;
   display: flex;
@@ -93,14 +162,17 @@ body {
 
 /* ── type ───────────────────────────────────────────── */
 h1, h2, h3 { line-height: 1.3; letter-spacing: -0.015em; text-wrap: balance; }
-h1 { font-size: 1.95rem; margin: 0 0 0.6rem; }
-h2 { font-size: 1.3rem; margin: 2.75rem 0 0.75rem; }
-h3 { font-size: 1.05rem; margin: 2rem 0 0.5rem; }
-p, li { max-width: var(--measure); }
+h1 { font-size: clamp(1.9rem, 4vw, 2.4rem); margin: 0 0 0.7rem; }
+h2 { font-size: 1.38rem; margin: 2.75rem 0 0.75rem; }
+h3 { font-size: 1.08rem; margin: 2rem 0 0.5rem; }
 p { margin: 0 0 1.1rem; }
 a { color: var(--accent); text-underline-offset: 2px; }
 
-.lede { font-size: 1.08rem; color: var(--ink-2); }
+/* 正文流元素统一限宽。卡片内部显式放开（见下） */
+h1, h2, h3, h4, p, ul, ol, blockquote, pre, .lede, .meta,
+.table-wrap, article figure { max-width: var(--measure); }
+
+.lede { font-size: 1.1rem; color: var(--ink-2); }
 
 .meta {
   font-family: var(--mono);
@@ -109,75 +181,134 @@ a { color: var(--accent); text-underline-offset: 2px; }
   letter-spacing: 0.02em;
 }
 
+/* 章节标签 —— 分隔线分级就发生在这里 */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  max-width: none;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 3rem 0 1.15rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+.section-head .count { margin-left: auto; color: var(--ink-3); }
+.section-head .line { color: var(--ink-2); }
+/* 分组标题继承该组的分类色 —— 卡片上就不再重复一遍 chip */
+.section-head.k-comparison .line { color: var(--k-comparison-fg); }
+.section-head.k-hands-on .line { color: var(--k-hands-fg); }
+.section-head.k-guide .line { color: var(--k-guide-fg); }
+.section-head.k-hardware .line { color: var(--k-hardware-fg); }
+
+/* ── kind chips ─────────────────────────────────────── */
 .kind {
   display: inline-block;
   font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.15rem 0.45rem;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  color: var(--ink-3);
-  vertical-align: 1px;
-}
-
-/* ── post list ──────────────────────────────────────── */
-.post-list { list-style: none; padding: 0; margin: 0; }
-.post-list li {
-  max-width: none;
-  padding-block: 1.25rem;
-  border-bottom: 1px solid var(--rule);
-}
-.post-list a.title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--ink);
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 0.3rem;
-}
-.post-list a.title:hover { color: var(--accent); }
-.post-list p { margin: 0.2rem 0 0.4rem; color: var(--ink-2); font-size: 0.95rem; }
-
-/* ── cluster nav (pillar → cluster internal linking) ── */
-.cluster-rail {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  padding: 1.1rem 1.25rem;
-  margin: 2.5rem 0;
-}
-.cluster-rail h4 {
-  margin: 0 0 0.6rem;
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
+  font-size: 0.68rem;
   font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 100px;
+  background: var(--code-bg);
+  color: var(--ink-3);
+  white-space: nowrap;
 }
-.cluster-rail ul { margin: 0; padding-left: 1.1rem; }
-.cluster-rail li { font-size: 0.93rem; margin-bottom: 0.3rem; }
+.kind-comparison { background: var(--k-comparison-bg); color: var(--k-comparison-fg); }
+.kind-hands-on   { background: var(--k-hands-bg);      color: var(--k-hands-fg); }
+.kind-guide      { background: var(--k-guide-bg);      color: var(--k-guide-fg); }
+.kind-hardware   { background: var(--k-hardware-bg);   color: var(--k-hardware-fg); }
 
-/* ── affiliate disclosure inline ────────────────────── */
-.aff-notice {
-  background: var(--warn-bg);
-  border: 1px solid var(--warn-rule);
-  border-radius: 3px;
-  padding: 0.75rem 1rem;
-  margin: 0 0 2rem;
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--ink-2);
+/* ── hero（首页顶部）────────────────────────────────── */
+.hero { margin-bottom: 0.5rem; }
+.hero h1 { max-width: 26ch; letter-spacing: -0.025em; }
+.hero .lede { max-width: 46rem; font-size: 1.16rem; line-height: 1.65; }
+.hero .meta { max-width: 46rem; margin-bottom: 0; }
+
+/* ── post grid（方向 C 的核心）──────────────────────── */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   max-width: none;
 }
-.aff-notice strong { color: var(--ink); }
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1.05rem 1.15rem 1.15rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.card:hover { border-color: var(--rule-strong); }
+.card-top { display: flex; align-items: center; gap: 0.7rem; }
+.card-date {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.card-top.no-kind .card-date { margin-left: 0; }
+.card h3 {
+  max-width: none;
+  margin: 0.75rem 0 0;
+  font-size: 1.03rem;
+  line-height: 1.34;
+  letter-spacing: -0.012em;
+}
+.card h3 a { color: var(--ink); text-decoration: none; }
+/* 整张卡可点，但只有一个链接 —— 无障碍名仍是标题 */
+.card h3 a::after { content: ""; position: absolute; inset: 0; }
+.card:hover h3 a { color: var(--accent); }
+.card p {
+  max-width: none;
+  margin: 0.5rem 0 0;
+  font-size: 0.89rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
 
-/* ── prose bits ─────────────────────────────────────── */
+/* featured：通栏。这一条是卡片式最大的风险的对冲 —— 否则 13 篇等大方块 */
+.card-featured { grid-column: 1 / -1; padding: 1.5rem 1.7rem 1.6rem; }
+.card-featured h3 {
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  line-height: 1.22;
+  letter-spacing: -0.022em;
+  margin-top: 0.95rem;
+}
+.card-featured p { font-size: 0.98rem; margin-top: 0.6rem; }
+@media (min-width: 800px) {
+  .card-featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-content: start;
+    gap: 0 2.4rem;
+  }
+  .card-featured .card-top { grid-column: 1 / -1; }
+  .card-featured h3 { grid-column: 1; margin-bottom: 0; }
+  .card-featured p { grid-column: 2; margin-top: 1.05rem; }
+}
+
+/* ── article ────────────────────────────────────────── */
+article h1 { font-size: clamp(1.75rem, 3.6vw, 2.25rem); letter-spacing: -0.022em; }
+article > .meta { display: flex; align-items: center; gap: 0.55rem; }
+
 article table {
   border-collapse: collapse;
   width: 100%;
+  max-width: 100%;
   font-size: 0.9rem;
   margin: 1.5rem 0;
 }
@@ -193,10 +324,15 @@ article th { background: var(--code-bg); font-weight: 600; }
 article blockquote {
   margin: 1.5rem 0;
   padding-left: 1rem;
-  border-left: 3px solid var(--rule);
+  border-left: 3px solid var(--rule-strong);
   color: var(--ink-2);
 }
-article img, article video { max-width: 100%; height: auto; border-radius: 3px; }
+article img, article video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+}
 article figcaption { font-size: 0.83rem; color: var(--ink-3); margin-top: 0.4rem; }
 
 code {
@@ -204,25 +340,62 @@ code {
   font-size: 0.87em;
   background: var(--code-bg);
   padding: 0.12em 0.35em;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 pre {
   background: var(--code-bg);
   padding: 1rem;
-  border-radius: 3px;
+  border-radius: 6px;
   overflow-x: auto;
   font-size: 0.85rem;
   line-height: 1.6;
+  border: 1px solid var(--rule);
 }
 pre code { background: none; padding: 0; }
 
-hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+hr { border: 0; border-top: 1px solid var(--rule-strong); margin: 2.5rem 0; }
+
+/* ── cluster rail ───────────────────────────────────── */
+.cluster-rail {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  margin: 2.75rem 0;
+  max-width: none;
+}
+.cluster-rail h4 {
+  margin: 0 0 0.65rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  max-width: none;
+}
+.cluster-rail ul { margin: 0; padding-left: 1.1rem; max-width: none; }
+.cluster-rail li { font-size: 0.93rem; margin-bottom: 0.3rem; max-width: none; }
+
+/* ── affiliate disclosure inline ────────────────────── */
+.aff-notice {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-rule);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin: 0 0 2rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: none;
+}
+.aff-notice strong { color: var(--ink); }
 
 /* ── footer ─────────────────────────────────────────── */
 .site-foot {
   margin-top: 5rem;
   padding-block: 1.5rem 3rem;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--rule-strong);
   font-size: 0.85rem;
   color: var(--ink-3);
 }

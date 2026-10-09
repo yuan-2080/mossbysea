@@ -1,0 +1,37 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  kind: string;
+  pubDate: Date;
+  /** 通栏大卡。首页只给最新一篇用，用来打破"所有条目一样大" */
+  featured?: boolean;
+  /** 支柱页已按 kind 分组时传 false —— 否则每张卡都重复一遍标题上方的分类 */
+  showKind?: boolean;
+}
+const {
+  href, title, description, kind, pubDate,
+  featured = false, showKind = true,
+} = Astro.props;
+
+const KIND_LABEL: Record<string, string> = {
+  comparison: 'Comparison',
+  'hands-on': 'Hands-on',
+  guide: 'Guide',
+  hardware: 'Hardware',
+};
+
+const fmt = (d: Date) =>
+  new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(d);
+---
+<article class:list={['card', featured && 'card-featured']}>
+  <div class:list={['card-top', !showKind && 'no-kind']}>
+    {showKind && (
+      <span class:list={['kind', `kind-${kind}`]}>{KIND_LABEL[kind] ?? kind}</span>
+    )}
+    <span class="card-date">{fmt(pubDate)}</span>
+  </div>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+</article>

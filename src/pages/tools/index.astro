@@ -5,6 +5,7 @@
 // ─────────────────────────────────────────────────────────────
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
 import { byNewest } from '../../lib/posts';
 
 const posts = (await getCollection('tools', ({ data }) => !data.draft)).sort(byNewest);
@@ -57,19 +58,26 @@ const byKind = (k: string) => posts.filter((p) => p.data.kind === k);
     const list = byKind(g.kind);
     return (
       <section>
-        <h2>{g.label}</h2>
+        <h2 class:list={['section-head', `k-${g.kind}`]}>
+          <span class="line">{g.label}</span>
+          <span class="count">{list.length} {list.length === 1 ? 'entry' : 'entries'}</span>
+        </h2>
         <p>{g.blurb}</p>
         {list.length === 0 ? (
           <p class="meta">Nothing in this group yet.</p>
         ) : (
-          <ul class="post-list">
+          <div class="post-grid">
             {list.map((post) => (
-              <li>
-                <a class="title" href={`/tools/${post.id}/`}>{post.data.title}</a>
-                <p>{post.data.description}</p>
-              </li>
+              <PostCard
+                href={`/tools/${post.id}/`}
+                title={post.data.title}
+                description={post.data.description}
+                kind={post.data.kind}
+                pubDate={post.data.pubDate}
+                showKind={false}
+              />
             ))}
-          </ul>
+          </div>
         )}
       </section>
     );

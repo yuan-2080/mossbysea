@@ -1,44 +1,50 @@
 ---
 import { SITE } from '../consts';
 import Base from '../layouts/Base.astro';
+import PostCard from '../components/PostCard.astro';
 import { getAllPosts } from '../lib/posts';
 
 // 两条线合并：tools（软件）与 setup（硬件），各自的 url 已在 lib 里算好。
 const posts = await getAllPosts();
-
-const KIND_LABEL: Record<string, string> = {
-  comparison: 'Comparison',
-  'hands-on': 'Hands-on',
-  guide: 'Guide',
-  hardware: 'Hardware',
-};
-const fmt = (d: Date) =>
-  new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(d);
+const [lead, ...rest] = posts;
 ---
 <Base>
-  <h1>{SITE.tagline}</h1>
-  <p class="lede">
-    I work in content and data at an internet company. This site records what happens when I point AI coding and agent tools at real tasks — not feature lists, but the debrief after a specific job either worked or fell apart.
-  </p>
-  <p>
-    Every conclusion here comes from my own machine and my own work. How I test is in <a href="/about/">About</a>; where the money comes from is in the <a href="/affiliate-disclosure/">affiliate disclosure</a>.
-  </p>
+  <section class="hero">
+    <h1>{SITE.tagline}</h1>
+    <p class="lede">
+      I work in content and data at an internet company. This site records what happens when I point AI coding and agent tools at real tasks — not feature lists, but the debrief after a specific job either worked or fell apart.
+    </p>
+    <p class="meta">
+      Every conclusion here comes from my own machine and my own work. How I test is in <a href="/about/">About</a>; where the money comes from is in the <a href="/affiliate-disclosure/">affiliate disclosure</a>.
+    </p>
+  </section>
 
-  <h2>Latest</h2>
+  <h2 class="section-head">
+    <span class="line">Latest</span>
+    <span class="count">{posts.length} entries</span>
+  </h2>
+
   {posts.length === 0 ? (
     <p class="meta">No posts yet. The first one will show up here.</p>
   ) : (
-    <ul class="post-list">
-      {posts.map((post) => (
-        <li>
-          <a class="title" href={post.url}>{post.entry.data.title}</a>
-          <p>{post.entry.data.description}</p>
-          <span class="meta">
-            <span class="kind">{KIND_LABEL[post.entry.data.kind] ?? post.entry.data.kind}</span>
-             · {fmt(post.entry.data.pubDate)}
-          </span>
-        </li>
+    <div class="post-grid">
+      <PostCard
+        href={lead.url}
+        title={lead.entry.data.title}
+        description={lead.entry.data.description}
+        kind={lead.entry.data.kind}
+        pubDate={lead.entry.data.pubDate}
+        featured
+      />
+      {rest.map((post) => (
+        <PostCard
+          href={post.url}
+          title={post.entry.data.title}
+          description={post.entry.data.description}
+          kind={post.entry.data.kind}
+          pubDate={post.entry.data.pubDate}
+        />
       ))}
-    </ul>
+    </div>
   )}
 </Base>

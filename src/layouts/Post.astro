@@ -44,9 +44,8 @@ const jsonLd = {
   <article>
     <h1>{title}</h1>
     <p class="meta">
-      <span class="kind">{KIND_LABEL[kind] ?? kind}</span>
-       · {fmt(pubDate)}
-      {updatedDate && <> · updated {fmt(updatedDate)}</>}
+      <span class:list={['kind', `kind-${kind}`]}>{KIND_LABEL[kind] ?? kind}</span>
+      <span>{fmt(pubDate)}{updatedDate && <> · updated {fmt(updatedDate)}</>}</span>
     </p>
 
     {affiliate && <AffiliateNotice />}
