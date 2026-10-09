@@ -1,11 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import { SITE } from '../consts';
 import Base from '../layouts/Base.astro';
+import { getAllPosts } from '../lib/posts';
 
-const posts = (await getCollection('tools', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+// 两条线合并：tools（软件）与 setup（硬件），各自的 url 已在 lib 里算好。
+const posts = await getAllPosts();
 
 const KIND_LABEL: Record<string, string> = {
   comparison: 'Comparison',
@@ -32,11 +31,11 @@ const fmt = (d: Date) =>
     <ul class="post-list">
       {posts.map((post) => (
         <li>
-          <a class="title" href={`/tools/${post.id}/`}>{post.data.title}</a>
-          <p>{post.data.description}</p>
+          <a class="title" href={post.url}>{post.entry.data.title}</a>
+          <p>{post.entry.data.description}</p>
           <span class="meta">
-            <span class="kind">{KIND_LABEL[post.data.kind] ?? post.data.kind}</span>
-             · {fmt(post.data.pubDate)}
+            <span class="kind">{KIND_LABEL[post.entry.data.kind] ?? post.entry.data.kind}</span>
+             · {fmt(post.entry.data.pubDate)}
           </span>
         </li>
       ))}
