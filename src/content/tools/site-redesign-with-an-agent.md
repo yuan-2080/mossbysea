@@ -5,7 +5,7 @@ pubDate: 2026-10-09
 kind: hands-on
 tags: ['WorkBuddy', 'design', 'CSS', 'Astro', 'agents']
 affiliate: false
-draft: true
+draft: false
 ---
 
 > **Tested** 2026-10-09\
