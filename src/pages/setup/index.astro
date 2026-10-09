@@ -1,0 +1,58 @@
+---
+// ─────────────────────────────────────────────────────────────
+// 硬件线的支柱页（pillar page）。
+// 规则和 /tools/ 一样：只写手上真有的设备，写失败，写时间成本。
+// ─────────────────────────────────────────────────────────────
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('setup', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<Base
+  title="The Workflow Setup"
+  description="The hardware behind the workflow: keyboards, docks, drives and the machines that run models locally. Written only about devices I actually own and use."
+  noindex={posts.length === 0}
+>
+  <h1>The Workflow Setup</h1>
+  <p class="lede">
+    The other half of the site. The tools line covers software I test; this line
+    covers the <strong>hardware I actually own</strong> — what it was bought for,
+    how long it has been on the desk, where it broke, and what it really cost
+    including the hours.
+  </p>
+
+  <h2>How this line is written</h2>
+  <p>
+    Same standard as the tools line, with one extra rule that matters more here:
+  </p>
+  <ul>
+    <li><strong>Owned, not reviewed.</strong> Every device here is one I bought and use. Nothing is borrowed, seeded, or bought for the sake of a post. If I haven't lived with it, it isn't here.</li>
+    <li><strong>Long enough to know.</strong> Posts are written after months of use, not after unboxing. Early enthusiasm and month-three opinion are usually different, and the post tells you which one it is.</li>
+    <li><strong>Manuals and official specs only.</strong> Numbers come from the manufacturer's own page, not from third-party roundup sites.</li>
+    <li><strong>Costs stated.</strong> Price paid, anything it forced me to buy, and the hours it cost in setup, debugging and returns.</li>
+    <li><strong>Failures included.</strong> Where it broke, or where I gave up on a feature, gets written up too.</li>
+  </ul>
+  <p class="meta">
+    The full methodology and conflict-of-interest statement are on the
+    <a href="/about/">About</a> page, and the affiliate policy is on the
+    <a href="/affiliate-disclosure/">disclosure page</a>.
+  </p>
+
+  <h2>Devices</h2>
+  {posts.length === 0 ? (
+    <p class="meta">
+      Nothing published yet. The first write-ups are in progress.
+    </p>
+  ) : (
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a class="title" href={`/setup/${post.id}/`}>{post.data.title}</a>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>

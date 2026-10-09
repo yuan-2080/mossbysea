@@ -9,11 +9,14 @@ interface Props {
   description?: string;
   /** 文章页传 article，其余留空 */
   ogType?: 'website' | 'article';
+  /** true 时输出 noindex —— 空栏目页、内页不要进索引 */
+  noindex?: boolean;
 }
 const {
   title,
   description = SITE.description,
   ogType = 'website',
+  noindex = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
@@ -27,6 +30,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
