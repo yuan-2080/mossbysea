@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "deploy": "astro build && npx wrangler pages deploy dist",
-    "check:leak": "bash scripts/check-leak.sh"
+    "check:leak": "bash scripts/check-leak.sh",
+    "indexnow": "bash scripts/indexnow.sh"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",

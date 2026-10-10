@@ -1,6 +1,11 @@
 ---
-import { SITE } from '../consts';
+import { SITE, ANALYTICS } from '../consts';
 import Base from '../layouts/Base.astro';
+
+// privacy 页关于统计的那一段，必须和站上实际装的东西一致。
+// 判断依据是 consts.ts 里的 token —— 填了就描述统计，没填就说没有。
+// 这样不会出现「页面声称有统计、实际没装」这类前后矛盾。
+const analyticsOn = ANALYTICS.cfBeaconToken.trim().length > 0;
 ---
 <Base
   title="Privacy"
@@ -9,7 +14,7 @@ import Base from '../layouts/Base.astro';
   <h1>Privacy</h1>
 
   <p class="lede">
-    Short version: no accounts, no personal data collected, nothing sold. Affiliate links and analytics involve third parties, and that's spelled out below.
+    Short version: no accounts, no personal data collected, nothing sold. Affiliate links are covered below, along with exactly what this site does and does not measure.
   </p>
 
   <h2>What this site collects</h2>
@@ -21,14 +26,43 @@ import Base from '../layouts/Base.astro';
   </p>
 
   <h2>Analytics</h2>
-  <p>
-    This site uses cookie-free analytics that do not track you across sites. It records page views, referring domain, and approximate region. <strong>No tracking cookies, no profiles, no cross-site tracking.</strong>
-  </p>
+  {
+    analyticsOn ? (
+      <>
+        <p>
+          This site uses cookie-free analytics that do not track you across
+          sites. It records page views, referring domain, and approximate
+          region.{' '}
+          <strong>No tracking cookies, no profiles, no cross-site tracking.</strong>
+        </p>
+        <p class="meta">
+          The provider is Cloudflare Web Analytics. Measurements stay
+          aggregate; they are not used to build a profile of you.
+        </p>
+      </>
+    ) : (
+      <>
+        <p>
+          <strong>This site currently runs no analytics at all.</strong> No
+          page-view counter, no visitor IDs, no third-party measurement
+          scripts.{' '}
+          <em>
+            (Server logs kept by the host, described above, are the only
+            record that a visit happened.)
+          </em>
+        </p>
+        <p class="meta">
+          If that changes, this section will say so before the change goes
+          live.
+        </p>
+      </>
+    )
+  }
   <p class="meta">
-    <!-- WARNING: the paragraph above describes Cloudflare Web Analytics /
-         Plausible / Umami. If you switch to Google Analytics you MUST rewrite
-         it — GA sets cookies, tracks across sites, and needs a consent banner
-         in GDPR regions. Do not leave this paragraph unchanged. -->
+    <!-- 装统计时：把 src/consts.ts 里 ANALYTICS.cfBeaconToken 填上，
+         上面这段会自动切换成「使用无 cookie 统计」的版本，不用手改这里。
+         若改用 Google Analytics：GA 会设置 cookie、跨站跟踪，GDPR 地区需要
+         同意横幅——那时必须重写这一段，不要直接沿用。 -->
   </p>
 
   <h2>Affiliate links and third-party cookies</h2>
@@ -62,5 +96,5 @@ import Base from '../layouts/Base.astro';
     The date below changes when this policy does. Anything that materially changes how data is handled will also be noted on the home page.
   </p>
 
-  <p class="meta">Last updated: September 2026</p>
+  <p class="meta">Last updated: October 2026</p>
 </Base>

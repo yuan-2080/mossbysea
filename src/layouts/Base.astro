@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../consts';
+import { SITE, ANALYTICS } from '../consts';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -52,6 +52,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       href={new URL('rss.xml', Astro.site)}
     />
     <meta name="generator" content={Astro.generator} />
+    {/* 统计：token 为空则整段不输出。见 consts.ts 的 ANALYTICS 注释。 */}
+    {
+      ANALYTICS.cfBeaconToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={`{"token":"${ANALYTICS.cfBeaconToken}"}`}
+        />
+      )
+    }
   </head>
   <body>
     <div class="shell">
