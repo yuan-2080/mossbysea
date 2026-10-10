@@ -1,6 +1,6 @@
 ---
-title: 'I said my site looked monotone. The agent opened the CSS before it opened a template gallery.'
-description: 'A full visual redesign of this site, run through WorkBuddy: a diagnosis built from my own stylesheet, three rendered directions using my real posts, one argument I overruled, and two environment bugs the agent caught that had nothing to do with design.'
+title: 'Redesigning an Astro blog with an AI agent'
+description: 'Three rendered directions built from my real posts, one argument I overruled, and two environment bugs the agent caught that had nothing to do with design.'
 pubDate: 2026-10-09
 kind: hands-on
 tags: ['WorkBuddy', 'design', 'CSS', 'Astro', 'agents']

@@ -1,6 +1,6 @@
 ---
-title: 'The install is never the hard part'
-description: 'Four coding agents, every install under a minute. Then one free tier turned out dead, one wanted a phone number, and two binaries were misnamed.'
+title: 'Installing Gemini CLI, Codex CLI, Muse Code and Antigravity'
+description: 'Four installs, each under a minute. Then: Gemini CLI could not sign in, Codex CLI wanted a phone number, two binaries are not named after their packages.'
 pubDate: 2026-10-07
 kind: guide
 tags: ['Claude Code', 'Muse Code', 'Antigravity', 'Codex', 'Gemini CLI', 'setup']

@@ -1,6 +1,6 @@
 ---
-title: 'Three ideas about what a session is'
-description: 'One treats a session as a place to return to, with seven doors back. One treats it as a record you can audit and redact. One treats it as the last conversation.'
+title: 'Sessions in Claude Code, Muse Code and Antigravity'
+description: 'One treats a session as a place to return to, with seven doors back. One as a record you can audit and redact. One as the last conversation.'
 pubDate: 2026-10-08
 kind: comparison
 tags: ['Claude Code', 'Muse Code', 'Antigravity', 'sessions', 'recovery']

@@ -1,6 +1,6 @@
 ---
-title: 'MacBook Air M4 in 2026: still the right Mac for work that is a bit of everything'
-description: 'A generation behind, and still the right machine for mixed, fanless work — after 19 months. Where it holds up, the one macOS bug that outlasted the honeymoon, and what I would buy if it died tomorrow.'
+title: 'MacBook Air M4 long-term review: 19 months later'
+description: 'Nineteen months with the MacBook Air M4: where it still holds up, the one macOS bug that outlived the honeymoon, and what I would buy if it died tomorrow.'
 pubDate: 2026-10-09
 kind: hardware
 tags: ['hardware', 'mac', 'workflow setup']

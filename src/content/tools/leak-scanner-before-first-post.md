@@ -1,6 +1,6 @@
 ---
-title: 'The four places my leak scanner did not look'
-description: 'A forty-line leak scanner, written before I published anything. The scanner was the easy part: git history and screenshots are where things leaked.'
+title: 'Four places secrets leak before you publish'
+description: 'Git history is permanent and public. Commit authorship is readable. Screenshot pixels carry text and image metadata carries more. A scanner misses all four.'
 pubDate: 2026-09-30
 kind: hands-on
 tags: ['privacy', 'git', 'bash', 'publishing']

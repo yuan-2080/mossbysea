@@ -1,6 +1,6 @@
 ---
-title: 'Three plugin systems: does it help, or can it hurt?'
-description: 'Claude Code runs plugins against a no-plugin baseline and reports the delta. Muse Code approves them capability by capability. Two different questions.'
+title: 'How Claude Code, Muse Code and Antigravity handle plugins'
+description: 'Claude Code runs plugins against a no-plugin baseline and reports the delta. Muse Code approves them capability by capability. Two questions, three designs.'
 pubDate: 2026-10-07
 kind: comparison
 tags: ['Claude Code', 'Muse Code', 'Antigravity', 'plugins', 'skills']

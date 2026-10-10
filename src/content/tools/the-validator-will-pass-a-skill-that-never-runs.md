@@ -1,5 +1,5 @@
 ---
-title: 'The validator will pass a skill that never runs'
+title: 'Why an agent skill can validate and still never run'
 description: 'Missing frontmatter is a warning. Missing description is a warning. Only broken YAML fails. A clean validation says little about whether your skill fires.'
 pubDate: 2026-10-07
 kind: guide

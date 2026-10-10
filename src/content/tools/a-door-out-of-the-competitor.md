@@ -1,6 +1,6 @@
 ---
-title: 'Every agent ships a door out of its competitor'
-description: 'Three coding agents ship importers that name rivals in a flag. A Google product routes to Anthropic. If the model were the moat, none of that makes sense.'
+title: 'Why every coding agent ships an importer for its rivals'
+description: 'Coding agents ship importers that name their rivals in a flag; a Google product routes to Anthropic. If the model were the moat, none of this makes sense.'
 pubDate: 2026-10-08
 kind: hands-on
 tags: ['Claude Code', 'Muse Code', 'Antigravity', 'strategy', 'migration']

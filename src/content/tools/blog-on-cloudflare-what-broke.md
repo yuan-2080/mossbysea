@@ -1,6 +1,6 @@
 ---
-title: 'Putting a blog on Cloudflare in 2026: eight things that broke'
-description: 'A static Astro site, a $10 domain and a working inbox in an afternoon. Most of that time went into eight problems no tutorial mentions.'
+title: 'Cloudflare Pages blog setup in 2026: eight things that broke'
+description: 'A static Astro site and a working inbox in one afternoon, plus eight problems no tutorial mentions: Email Routing, workers.dev taking down www, Error 1016.'
 pubDate: 2026-09-27
 kind: guide
 tags: ['Cloudflare', 'Astro', 'static site', 'DNS', 'email']

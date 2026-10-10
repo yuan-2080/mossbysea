@@ -1,6 +1,6 @@
 ---
-title: 'Three terminal agents, compared by what they ship'
-description: 'Bundled skills: twenty, zero, and none-but-a-marketplace. Three different bets about where an agent''s capability should live, all readable off the CLI.'
+title: 'Claude Code vs Muse Code vs Antigravity, compared'
+description: 'Bundled skills: twenty, zero, and none but a marketplace. Permissions, MCP and sandboxing read straight off each CLI — and what it does not tell you.'
 pubDate: 2026-10-07
 kind: comparison
 tags: ['Claude Code', 'Muse Code', 'Antigravity', 'terminal agents', 'CLI']

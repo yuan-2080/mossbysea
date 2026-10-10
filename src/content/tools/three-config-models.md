@@ -1,6 +1,6 @@
 ---
-title: 'Three coding agents, three config models'
-description: 'One prints a sha256 of your policy state. One layers user, project and local settings on disk. One only configures your PATH. Who is the config for?'
+title: 'Where Claude Code, Muse Code and Antigravity keep config'
+description: 'One layers user, project and local settings on disk. One prints a sha256 of your policy state. One only sets your PATH. Three config models, side by side.'
 pubDate: 2026-10-07
 kind: comparison
 tags: ['Claude Code', 'Muse Code', 'Antigravity', 'configuration', 'enterprise']

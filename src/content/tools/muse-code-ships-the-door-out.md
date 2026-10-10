@@ -1,6 +1,6 @@
 ---
-title: 'Muse Code ships the door out of Claude Code'
-description: 'Meta bundles twenty skills with its terminal coding agent. Four exist only to move you off Claude Code or Codex. I pointed the importer at my own setup.'
+title: 'Muse Code bundles 20 skills, and 4 move you off Claude Code'
+description: 'Meta ships twenty skills with its terminal coding agent. Four exist only to migrate you off Claude Code or Codex. I pointed the importer at my own setup.'
 pubDate: 2026-10-07
 kind: hands-on
 tags: ['Muse Code', 'Claude Code', 'terminal agents', 'migration']

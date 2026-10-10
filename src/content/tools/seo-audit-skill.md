@@ -1,6 +1,6 @@
 ---
-title: 'An SEO skill that refuses to repeat folklore'
-description: 'Most SEO tools cannot tell what Google requires from what people merely repeat. Four evidence tiers, one of which exists to say: Google never said that.'
+title: 'An SEO audit that checks Google''s rules, not folklore'
+description: 'Four evidence tiers, one exists to say: Google never said that. Plus the two policies affiliate sites fail by accident: thin affiliation and scaled content abuse.'
 pubDate: 2026-10-01
 kind: hands-on
 tags: ['SEO', 'Claude Code', 'skills', 'Google Search Central']

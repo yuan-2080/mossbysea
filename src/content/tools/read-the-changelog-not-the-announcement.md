@@ -1,6 +1,6 @@
 ---
-title: 'Read the changelog, not the announcement'
-description: 'Google launched a universal work agent today. I cannot run it. What I can run is `agy changelog` — and bug fixes say more than any launch post.'
+title: 'What the changelog says about retiring Gemini CLI'
+description: 'Launch posts describe intent; changelogs describe what shipped. What agy changelog revealed about retiring Gemini CLI, and why bug fixes say more.'
 pubDate: 2026-10-08
 kind: hands-on
 tags: ['Antigravity', 'Gemini', 'Google', 'changelogs']
