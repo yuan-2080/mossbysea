@@ -134,6 +134,8 @@ What counts as finished:
 <!-- ═══ 联盟链接放置规则 ═══
      1. frontmatter 里 affiliate: true，文首会自动插入披露条
      2. 链接放在「Who should buy which」之后，不要在正文中段反复插
-     3. 没实际用过的产品不放链接
+     3. 没实际用过的产品可以挂链接 —— 但不能用第一人称使用口吻。
+        依据若不是亲手使用，正文必须点名来源（厂商规格 / 拆解报告 / 谁做的实测），
+        别把别人的测试写成自己的。FTC 2024 评论规则禁止虚假声称使用体验。
      4. 不放「limited time」「only N spots left」这类话术
 -->
