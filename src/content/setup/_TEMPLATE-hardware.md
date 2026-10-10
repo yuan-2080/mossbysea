@@ -148,4 +148,9 @@ What was breaking:
      5. 第一次挂链接时，同步更新 /affiliate-disclosure
         （那一页现在明写「站内没有任何联盟链接」，挂上就要改）
      6. 参数只引厂商官方页面。三方目录站和 best-X 聚合页不算来源。
+     7. 商品大卡（2026-10-11 起）：把文章存成 .mdx，import ProductCard
+        （src/components/ProductCard.astro）。卡片服务实测内容、不替代实测内容；
+        没上手的产品用 basis="researched" 且不打分；卡片里挂了链接时，
+        frontmatter 的 affiliate 必须同时为 true —— 卡片会自动给链接加
+        rel="sponsored nofollow"，但文首披露条由 frontmatter 触发，两者同真同假。
 -->

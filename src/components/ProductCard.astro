@@ -1,0 +1,282 @@
+---
+// ───────────────────────────────────────────────────────────────
+// ProductCard —— 商品大卡。仅在 .mdx 文章里可用（.md 里写不了组件）。
+//
+// 用法约定（2026-10-11 定）：
+//   1. 卡片服务实测内容，不替代实测内容 —— 一篇只有卡片没有实测的页面
+//      是 Google thin affiliation 政策直接打击的对象。
+//   2. basis="researched" 表示没上手过 —— 卡片右上角会标 Researched，
+//      正文不许用第一人称使用口吻（站规第 1 条）。
+//   3. links 里的链接若 affiliate={true}，自动带 rel="sponsored nofollow"，
+//      卡底出现佣金提示；同时 frontmatter 的 affiliate 也要是 true，
+//      文首披露条才会出现 —— 两者必须同真同假。
+//   4. 评分 rating 0–5，只给上过手的东西打分；researched 卡不要打分。
+// ───────────────────────────────────────────────────────────────
+interface CardLink {
+  label: string;
+  url: string;
+  store?: string;
+}
+interface Props {
+  name: string;
+  /** 一句话评价 —— 卡片的核心，读这张卡 80% 的人只看这句 */
+  verdict: string;
+  rating?: number;
+  pros?: string[];
+  cons?: string[];
+  links?: CardLink[];
+  affiliate?: boolean;
+  basis?: 'hands-on' | 'researched';
+}
+
+const {
+  name,
+  verdict,
+  rating,
+  pros = [],
+  cons = [],
+  links = [],
+  affiliate = false,
+  basis = 'hands-on',
+} = Astro.props;
+
+const rel = affiliate ? 'sponsored nofollow noopener' : 'noopener';
+const full = rating != null ? Math.round(rating) : 0;
+---
+
+<aside class="pcard">
+  <div class="pcard-head">
+    <div class="pcard-title-row">
+      <h3 class="pcard-name">{name}</h3>
+      <span class:list={['pcard-basis', basis === 'researched' && 'is-researched']}>
+        {basis === 'researched' ? 'Researched' : 'Hands-on'}
+      </span>
+    </div>
+    {
+      rating != null && (
+        <div class="pcard-rating" aria-label={`Rated ${rating} out of 5`}>
+          <span class="pcard-stars" aria-hidden="true">
+            {'★'.repeat(full)}
+            {'☆'.repeat(5 - full)}
+          </span>
+          <span class="pcard-score">{rating}/5</span>
+        </div>
+      )
+    }
+  </div>
+
+  <p class="pcard-verdict">{verdict}</p>
+
+  {
+    (pros.length > 0 || cons.length > 0) && (
+      <details class="pcard-details">
+        <summary>
+          Pros and cons
+          <span class="pcard-toggle" aria-hidden="true" />
+        </summary>
+        <div class="pcard-pc">
+          {pros.length > 0 && (
+            <div class="pcard-col">
+              <p class="pcard-col-title pros">Pros</p>
+              <ul>
+                {pros.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {cons.length > 0 && (
+            <div class="pcard-col">
+              <p class="pcard-col-title cons">Cons</p>
+              <ul>
+                {cons.map((c) => (
+                  <li>{c}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </details>
+    )
+  }
+
+  {
+    links.length > 0 && (
+      <div class="pcard-links">
+        {links.map((l) => (
+          <a class="pcard-btn" href={l.url} rel={rel} target="_blank">
+            {l.label}
+            {l.store && <span class="pcard-store">{l.store}</span>}
+          </a>
+        ))}
+        {affiliate && (
+          <p class="pcard-aff">
+            Links here may pay this site a commission. Your price does not change.
+          </p>
+        )}
+      </div>
+    )
+  }
+</aside>
+
+<style>
+  .pcard {
+    margin: 1.75rem 0;
+    border: 1px solid var(--rule-strong);
+    border-radius: 12px;
+    background: var(--card);
+    padding: 1.1rem 1.25rem 1.25rem;
+  }
+  .pcard-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .pcard-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .pcard-name {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.35;
+  }
+  .pcard-basis {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 0.14rem 0.5rem;
+    border-radius: 999px;
+    background: var(--k-hands-bg);
+    color: var(--k-hands-fg);
+    white-space: nowrap;
+  }
+  .pcard-basis.is-researched {
+    background: var(--k-guide-bg);
+    color: var(--k-guide-fg);
+  }
+  .pcard-rating {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    white-space: nowrap;
+  }
+  .pcard-stars {
+    color: var(--accent);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+  }
+  .pcard-score {
+    font-size: 0.8rem;
+    color: var(--ink-3);
+  }
+  .pcard-verdict {
+    margin: 0.55rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .pcard-details {
+    margin-top: 0.85rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.55rem;
+  }
+  .pcard-details summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-2);
+    user-select: none;
+  }
+  .pcard-details summary::-webkit-details-marker {
+    display: none;
+  }
+  .pcard-toggle {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 2px solid var(--ink-3);
+    border-bottom: 2px solid var(--ink-3);
+    transform: rotate(45deg);
+    transition: transform 0.15s ease;
+    margin-right: 0.2rem;
+  }
+  .pcard-details[open] .pcard-toggle {
+    transform: rotate(225deg);
+  }
+  .pcard-pc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.7rem;
+  }
+  .pcard-col-title {
+    margin: 0 0 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .pcard-col-title.pros {
+    color: var(--k-hands-fg);
+  }
+  .pcard-col-title.cons {
+    color: var(--k-guide-fg);
+  }
+  .pcard-col ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.87rem;
+    line-height: 1.6;
+    color: var(--ink-2);
+  }
+  .pcard-col li + li {
+    margin-top: 0.3rem;
+  }
+  .pcard-links {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .pcard-btn {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .pcard-btn:hover {
+    filter: brightness(1.08);
+    text-decoration: none;
+  }
+  .pcard-store {
+    font-size: 0.72rem;
+    font-weight: 500;
+    opacity: 0.85;
+  }
+  .pcard-aff {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+    flex-basis: 100%;
+  }
+  @media (max-width: 480px) {
+    .pcard-pc {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

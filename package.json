@@ -13,6 +13,7 @@
     "indexnow": "bash scripts/indexnow.sh"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.15.0"

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <style>
+    .t1 { fill: #16181d; }
+    .t2 { fill: #4a4f58; }
+    .t3 { fill: #868c96; }
+    .band { fill: #e4f7f0; }
+    .b-un { fill: #9298a1; }
+    .b-apps { fill: #1f5fa3; }
+    .b-brow { fill: #2a78d6; }
+    .b-ai { fill: #5a98e0; }
+    .b-ed { fill: #8ab6e8; }
+    .b-chat { fill: #bcd5f2; }
+    .b-sys { fill: #6b7280; }
+    .b-oth { fill: #a8adb5; }
+    .b-pkg { fill: #d0d4d9; }
+    .b-mine { fill: #1baf7a; }
+    .b-free { fill: none; stroke: #c6c9c2; stroke-width: 1.5; stroke-dasharray: 4 3; }
+    @media (prefers-color-scheme: dark) {
+      .t1 { fill: #eceef1; }
+      .t2 { fill: #b0b5bd; }
+      .t3 { fill: #7d838d; }
+      .band { fill: #102b22; }
+      .b-un { fill: #565b64; }
+      .b-apps { fill: #4f86c2; }
+      .b-brow { fill: #6aa6ef; }
+      .b-ai { fill: #8ab6e8; }
+      .b-ed { fill: #aac8ee; }
+      .b-chat { fill: #c4d9f0; }
+      .b-sys { fill: #4a5058; }
+      .b-oth { fill: #6b7280; }
+      .b-pkg { fill: #3f444c; }
+      .b-mine { fill: #4fd4a4; }
+      .b-free { stroke: #3d4046; }
+    }
+  </style>
+
+  <text x="0" y="26" font-size="18" font-weight="600" class="t1">Where 245 GB actually went</text>
+  <text x="0" y="48" font-size="12.5" class="t3">Usable capacity of a 256 GB MacBook Air · measured on my machine · 2026-10-11</text>
+
+  <!-- row band for "My own files" -->
+  <rect x="0" y="298" width="680" height="24" rx="4" class="band"/>
+
+  <!-- rows: y = top of bar, bar h = 16, text baseline = y + 12.5 -->
+  <!-- scale: 3.83 px / GB -->
+
+  <text x="178" y="92.5" font-size="12.5" text-anchor="end" class="t2">System, snapshots, purgeable</text>
+  <rect x="186" y="80" width="420" height="16" rx="3" class="b-un"/>
+  <text x="612" y="92.5" font-size="12" class="t2">109.6 GB</text>
+
+  <text x="178" y="116.5" font-size="12.5" text-anchor="end" class="t2">Installed apps</text>
+  <rect x="186" y="104" width="96" height="16" rx="3" class="b-apps"/>
+  <text x="288" y="116.5" font-size="12" class="t2">25 GB</text>
+
+  <text x="178" y="140.5" font-size="12.5" text-anchor="end" class="t2">Browsers</text>
+  <rect x="186" y="128" width="92" height="16" rx="3" class="b-brow"/>
+  <text x="284" y="140.5" font-size="12" class="t2">24 GB</text>
+
+  <text x="178" y="164.5" font-size="12.5" text-anchor="end" class="t2">AI tools</text>
+  <rect x="186" y="152" width="77" height="16" rx="3" class="b-ai"/>
+  <text x="269" y="164.5" font-size="12" class="t2">20 GB</text>
+
+  <text x="178" y="188.5" font-size="12.5" text-anchor="end" class="t2">Editors</text>
+  <rect x="186" y="176" width="46" height="16" rx="3" class="b-ed"/>
+  <text x="238" y="188.5" font-size="12" class="t2">12 GB</text>
+
+  <text x="178" y="212.5" font-size="12.5" text-anchor="end" class="t2">Chat and collaboration</text>
+  <rect x="186" y="200" width="46" height="16" rx="3" class="b-chat"/>
+  <text x="238" y="212.5" font-size="12" class="t2">12 GB</text>
+
+  <text x="178" y="236.5" font-size="12.5" text-anchor="end" class="t2">System libraries</text>
+  <rect x="186" y="224" width="42" height="16" rx="3" class="b-sys"/>
+  <text x="234" y="236.5" font-size="12" class="t2">11 GB</text>
+
+  <text x="178" y="260.5" font-size="12.5" text-anchor="end" class="t2">Other home data</text>
+  <rect x="186" y="248" width="34" height="16" rx="3" class="b-oth"/>
+  <text x="226" y="260.5" font-size="12" class="t2">8.8 GB</text>
+
+  <text x="178" y="284.5" font-size="12.5" text-anchor="end" class="t2">Package manager</text>
+  <rect x="186" y="272" width="9" height="16" rx="3" class="b-pkg"/>
+  <text x="201" y="284.5" font-size="12" class="t2">2.3 GB</text>
+
+  <text x="178" y="310.5" font-size="12.5" font-weight="600" text-anchor="end" class="t1">My own files</text>
+  <rect x="186" y="298" width="8" height="16" rx="3" class="b-mine"/>
+  <text x="201" y="310.5" font-size="12" font-weight="600" class="t1">2.2 GB</text>
+
+  <text x="178" y="334.5" font-size="12.5" text-anchor="end" class="t2">Free</text>
+  <rect x="186" y="322" width="70" height="16" rx="3" class="b-free"/>
+  <text x="262" y="334.5" font-size="12" class="t2">18.2 GB</text>
+</svg>

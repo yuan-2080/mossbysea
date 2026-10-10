@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <style>
+    .t1 { fill: #16181d; }
+    .t2 { fill: #4a4f58; }
+    .t3 { fill: #868c96; }
+    .chip { fill: #f4f5f2; }
+    .frame { fill: none; stroke: #c6c9c2; stroke-width: 1.5; }
+    .screen { fill: #eaf1fb; stroke: #c6c9c2; stroke-width: 1.5; }
+    .body { fill: #e3e4e0; stroke: #c6c9c2; stroke-width: 1.5; }
+    .stand { stroke: #c6c9c2; stroke-width: 1.5; }
+    .ok { fill: #0f7350; }
+    .warn { fill: #8a6110; }
+    @media (prefers-color-scheme: dark) {
+      .t1 { fill: #eceef1; }
+      .t2 { fill: #b0b5bd; }
+      .t3 { fill: #7d838d; }
+      .chip { fill: #1b1d21; }
+      .frame { stroke: #3d4046; }
+      .screen { fill: #1a2433; stroke: #3d4046; }
+      .body { fill: #26282c; stroke: #3d4046; }
+      .stand { stroke: #3d4046; }
+      .ok { fill: #4fd4a4; }
+      .warn { fill: #d9a63f; }
+    }
+  </style>
+
+  <text x="0" y="26" font-size="18" font-weight="600" class="t1">Three generations, three rules</text>
+
+  <!-- ── Column 1: M1 / M2 (cx = 113) ── -->
+  <rect x="69" y="48" width="88" height="24" rx="12" class="chip"/>
+  <text x="113" y="64" font-size="12.5" text-anchor="middle" class="t2">M1 and M2</text>
+  <!-- one monitor -->
+  <rect x="75" y="92" width="76" height="48" rx="4" class="screen"/>
+  <line x1="113" y1="140" x2="113" y2="150" class="stand"/>
+  <line x1="97" y1="150" x2="129" y2="150" class="stand"/>
+  <!-- open laptop -->
+  <rect x="81" y="168" width="64" height="42" rx="3" class="screen"/>
+  <rect x="75" y="210" width="76" height="7" rx="3.5" class="body"/>
+  <text x="113" y="248" font-size="13" font-weight="600" text-anchor="middle" class="t1">1 external display</text>
+  <text x="113" y="268" font-size="11.5" text-anchor="middle" class="t3">two needs a DisplayLink dock</text>
+
+  <!-- ── Column 2: M3 (cx = 340) ── -->
+  <rect x="312" y="48" width="56" height="24" rx="12" class="chip"/>
+  <text x="340" y="64" font-size="12.5" text-anchor="middle" class="t2">M3</text>
+  <!-- two monitors -->
+  <rect x="260" y="92" width="76" height="48" rx="4" class="screen"/>
+  <line x1="298" y1="140" x2="298" y2="150" class="stand"/>
+  <line x1="282" y1="150" x2="314" y2="150" class="stand"/>
+  <rect x="344" y="92" width="76" height="48" rx="4" class="screen"/>
+  <line x1="382" y1="140" x2="382" y2="150" class="stand"/>
+  <line x1="366" y1="150" x2="398" y2="150" class="stand"/>
+  <!-- closed laptop -->
+  <rect x="304" y="196" width="72" height="9" rx="4.5" class="body"/>
+  <text x="340" y="248" font-size="13" font-weight="600" text-anchor="middle" class="warn">2 externals — lid must close</text>
+  <text x="340" y="268" font-size="11.5" text-anchor="middle" class="t3">keyboard, mouse, power, in order</text>
+
+  <!-- ── Column 3: M4 / M5 (cx = 567) ── -->
+  <rect x="523" y="48" width="88" height="24" rx="12" class="chip"/>
+  <text x="567" y="64" font-size="12.5" text-anchor="middle" class="t2">M4 and M5</text>
+  <!-- two monitors -->
+  <rect x="487" y="92" width="76" height="48" rx="4" class="screen"/>
+  <line x1="525" y1="140" x2="525" y2="150" class="stand"/>
+  <line x1="509" y1="150" x2="541" y2="150" class="stand"/>
+  <rect x="571" y="92" width="76" height="48" rx="4" class="screen"/>
+  <line x1="609" y1="140" x2="609" y2="150" class="stand"/>
+  <line x1="593" y1="150" x2="625" y2="150" class="stand"/>
+  <!-- open laptop -->
+  <rect x="535" y="164" width="64" height="42" rx="3" class="screen"/>
+  <rect x="529" y="206" width="76" height="7" rx="3.5" class="body"/>
+  <text x="567" y="248" font-size="13" font-weight="600" text-anchor="middle" class="ok">built-in + 2 externals</text>
+  <text x="567" y="268" font-size="11.5" text-anchor="middle" class="t3">lid open or closed — same</text>
+</svg>
