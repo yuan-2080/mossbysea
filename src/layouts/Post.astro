@@ -28,9 +28,14 @@ const KIND_LABEL: Record<string, string> = {
 const fmt = (d: Date) =>
   new Intl.DateTimeFormat('en-US', { dateStyle: 'long' }).format(d);
 
+// BlogPosting everywhere. Do NOT emit schema.org Review here: a Review
+// requires itemReviewed (+ a rating) pointing at ONE thing, our comparison
+// posts cover several tools, and GSC flags a bare Review as a critical
+// structured-data error (2026-10-13 incident). Revisit only if a future
+// post reviews a single product with a real rating.
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': kind === 'comparison' ? 'Review' : 'BlogPosting',
+  '@type': 'BlogPosting',
   headline: title,
   description,
   datePublished: pubDate.toISOString(),
