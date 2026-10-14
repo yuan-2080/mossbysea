@@ -3,10 +3,12 @@ import { SITE } from '../consts';
 import Base from '../layouts/Base.astro';
 import PostCard from '../components/PostCard.astro';
 import { getAllPosts } from '../lib/posts';
+import { resolveHero } from '../lib/hero';
 
 // 两条线合并：tools（软件）与 setup（硬件），各自的 url 已在 lib 里算好。
 const posts = await getAllPosts();
 const [lead, ...rest] = posts;
+const heroSrc = (p: (typeof posts)[number]) => resolveHero(p.entry.data.hero)?.src;
 ---
 <Base>
   <section class="hero">
@@ -34,6 +36,7 @@ const [lead, ...rest] = posts;
         description={lead.entry.data.description}
         kind={lead.entry.data.kind}
         pubDate={lead.entry.data.pubDate}
+        image={heroSrc(lead)}
         featured
       />
       {rest.map((post) => (
@@ -43,6 +46,7 @@ const [lead, ...rest] = posts;
           description={post.entry.data.description}
           kind={post.entry.data.kind}
           pubDate={post.entry.data.pubDate}
+          image={heroSrc(post)}
         />
       ))}
     </div>

@@ -252,6 +252,21 @@ h1, h2, h3, h4, p, ul, ol, blockquote, pre, .lede, .meta,
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 .card:hover { border-color: var(--rule-strong); }
+/* 卡片缩略图 —— 每张卡都有（hero 或 GenHero 兜底），固定比例防 CLS */
+.card-thumb {
+  aspect-ratio: 680 / 310;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  margin: 0 0 0.85rem;
+}
+.card-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .card-top { display: flex; align-items: center; gap: 0.7rem; }
 .card-date {
   margin-left: auto;
@@ -280,25 +295,32 @@ h1, h2, h3, h4, p, ul, ol, blockquote, pre, .lede, .meta,
   color: var(--ink-2);
 }
 
-/* featured：通栏。这一条是卡片式最大的风险的对冲 —— 否则 13 篇等大方块 */
-.card-featured { grid-column: 1 / -1; padding: 1.5rem 1.7rem 1.6rem; }
+/* featured：通栏，图文各半 —— 左缩略图右文字，"所有条目一样大"的破局点 */
+.card-featured { grid-column: 1 / -1; padding: 1.4rem 1.6rem 1.5rem; }
+.card-featured .card-thumb { margin-bottom: 0.9rem; }
 .card-featured h3 {
-  font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+  font-size: clamp(1.3rem, 2.5vw, 1.62rem);
   line-height: 1.22;
   letter-spacing: -0.022em;
-  margin-top: 0.95rem;
+  margin-top: 0.9rem;
 }
 .card-featured p { font-size: 0.98rem; margin-top: 0.6rem; }
 @media (min-width: 800px) {
   .card-featured {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    align-content: start;
-    gap: 0 2.4rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 0 2.2rem;
+    align-content: center;
   }
-  .card-featured .card-top { grid-column: 1 / -1; }
-  .card-featured h3 { grid-column: 1; margin-bottom: 0; }
-  .card-featured p { grid-column: 2; margin-top: 1.05rem; }
+  .card-featured .card-thumb {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    align-self: center;
+    margin-bottom: 0;
+  }
+  .card-featured .card-top { grid-column: 2; }
+  .card-featured h3 { grid-column: 2; margin-top: 0.6rem; }
+  .card-featured p { grid-column: 2; margin-top: 0.75rem; }
 }
 
 /* ── article ────────────────────────────────────────── */

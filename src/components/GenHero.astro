@@ -1,0 +1,127 @@
+---
+// 程序化题图：没有手绘 hero 的文章/卡片的兜底视觉。
+//
+// 设计语言：kind 色浅底 + 右侧几何图腾（comparison=交叠双圆 / guide=虚线路径 /
+// hands-on=终端窗 / hardware=芯片），左侧 kind 标签（完整版再画标题行）。
+// 内联 SVG 直接引用页面 CSS 变量（--k-*-bg/fg、--ink、--surface），
+// 暗色模式自动跟随，无需自带媒体查询。
+//
+// 版权注记：这是排版元素（文字 + 几何图形），不是照片，不存在素材来源问题。
+
+interface Props {
+  kind: string;
+  /** 完整版画标题（文章页用）；compact 卡片版不画，避免与卡片标题重复 */
+  title?: string;
+  compact?: boolean;
+  label?: string;
+}
+
+const { kind, title, compact = false, label } = Astro.props;
+
+const KIND_LABEL: Record<string, string> = {
+  comparison: 'Comparison',
+  'hands-on': 'Hands-on',
+  guide: 'Guide',
+  hardware: 'Hardware',
+};
+// kind 值到 CSS token 前缀的映射 —— kind 是 'hands-on' 但 token 是 --k-hands-*
+const TOKEN_PREFIX: Record<string, string> = {
+  comparison: 'comparison',
+  'hands-on': 'hands',
+  guide: 'guide',
+  hardware: 'hardware',
+};
+const text = label ?? KIND_LABEL[kind] ?? kind;
+const tk = TOKEN_PREFIX[kind] ?? kind;
+
+// 标题折行：优先 16 字符×3 行（37px 大字）；放不下就退到 22 字符×4 行（30px），
+// 宁可缩字号也不在标题中间截断
+function wrap(t: string, limit: number): string[] {
+  const out: string[] = [];
+  let cur = '';
+  for (const w of t.split(' ')) {
+    if (cur && (cur + ' ' + w).length > limit) {
+      out.push(cur);
+      cur = w;
+    } else {
+      cur = cur ? `${cur} ${w}` : w;
+    }
+  }
+  if (cur) out.push(cur);
+  return out;
+}
+let lines: string[] = [];
+let titleSize = 37;
+let titleStep = 54;
+if (title && !compact) {
+  lines = wrap(title, 16);
+  if (lines.length > 3) {
+    lines = wrap(title, 22);
+    titleSize = 30;
+    titleStep = 44;
+    if (lines.length > 4) lines.length = 4;
+  }
+}
+
+const fg = `var(--k-${tk}-fg)`;
+const bg = `var(--k-${tk}-bg)`;
+---
+
+<svg
+  viewBox="0 0 680 310"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  style={`display:block;width:100%;height:100%`}
+>
+  <rect width="680" height="310" style={`fill:${bg}`} />
+
+  <!-- 右侧几何图腾 —— 按 kind 区分 -->
+  {kind === 'comparison' && (
+    <g style={`stroke:${fg}`} fill="none" stroke-width="2.5">
+      <circle cx="512" cy="155" r="62" style={`fill:var(--surface)`} />
+      <circle cx="588" cy="155" r="62" />
+    </g>
+  )}
+  {kind === 'guide' && (
+    <g style={`stroke:${fg}`} fill="none">
+      <path d="M452 232 C 500 232, 520 186, 560 156 S 618 108, 644 82" stroke-width="2.5" stroke-dasharray="9 7" stroke-linecap="round" />
+      <path d="M644 82 L630 84 L636 96 Z" style={`fill:${fg};stroke:none`} />
+      <circle cx="452" cy="232" r="6" style={`fill:${fg};stroke:none`} />
+      <circle cx="560" cy="156" r="4" style={`fill:${fg};stroke:none`} />
+    </g>
+  )}
+  {kind === 'hands-on' && (
+    <g style={`stroke:${fg}`} fill="none" stroke-width="2.5">
+      <rect x="462" y="102" width="176" height="112" rx="10" style={`fill:var(--surface)`} />
+      <circle cx="482" cy="122" r="4" style={`fill:${fg};stroke:none`} />
+      <circle cx="498" cy="122" r="4" style={`fill:${fg};stroke:none`} />
+      <text x="482" y="176" font-family="ui-monospace, Menlo, monospace" font-size="26" style={`fill:${fg};stroke:none`}>$ ▍</text>
+    </g>
+  )}
+  {kind === 'hardware' && (
+    <g style={`stroke:${fg}`} fill="none" stroke-width="2.5">
+      <rect x="488" y="118" width="122" height="122" rx="10" style={`fill:var(--surface)`} />
+      <rect x="518" y="148" width="62" height="62" rx="5" style={`fill:${bg}`} stroke-width="1.8" />
+      <line x1="516" y1="134" x2="516" y2="118" />
+      <line x1="549" y1="134" x2="549" y2="118" />
+      <line x1="582" y1="134" x2="582" y2="118" />
+      <line x1="516" y1="224" x2="516" y2="240" />
+      <line x1="549" y1="224" x2="549" y2="240" />
+      <line x1="582" y1="224" x2="582" y2="240" />
+      <line x1="504" y1="150" x2="488" y2="150" />
+      <line x1="504" y1="179" x2="488" y2="179" />
+      <line x1="504" y1="208" x2="488" y2="208" />
+      <line x1="610" y1="150" x2="626" y2="150" />
+      <line x1="610" y1="179" x2="626" y2="179" />
+      <line x1="610" y1="208" x2="626" y2="208" />
+    </g>
+  )}
+
+  <!-- 左侧：kind 标签 +（完整版）标题行 -->
+  <text x="48" y="74" font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="0.16em" text-transform="uppercase" style={`fill:${fg}`}>{text.toUpperCase()}</text>
+  {lines.map((l, i) => (
+    <text x="48" y={118 + i * titleStep} font-size={titleSize} font-weight="600" letter-spacing="-0.015em" style={`fill:var(--ink)`}>{l}</text>
+  ))}
+
+  <text x="48" y="284" font-family="ui-monospace, Menlo, monospace" font-size="12" letter-spacing="0.1em" style={`fill:${fg};opacity:0.75`}>MOSSBYSEA</text>
+</svg>

@@ -3,6 +3,7 @@ import type { ImageMetadata } from 'astro';
 import { SITE } from '../consts';
 import Base from './Base.astro';
 import AffiliateNotice from '../components/AffiliateNotice.astro';
+import GenHero from '../components/GenHero.astro';
 
 interface Props {
   title: string;
@@ -57,7 +58,7 @@ const jsonLd = {
       <span>{fmt(pubDate)}{updatedDate && <> · updated {fmt(updatedDate)}</>}</span>
     </p>
 
-    {hero && (
+    {hero ? (
       <figure class="post-hero">
         <img
           src={hero.src}
@@ -67,6 +68,11 @@ const jsonLd = {
           loading="eager"
           decoding="async"
         />
+      </figure>
+    ) : (
+      // 没有手绘 hero 的文章：程序化 title-card 兜底，保证全站"图文各半"的密度
+      <figure class="post-hero">
+        <GenHero kind={kind} title={title} />
       </figure>
     )}
 
