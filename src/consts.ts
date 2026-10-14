@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 export const SITE = {
   name: 'MossBySea',
-  tagline: 'Testing AI tools on real work',
+  tagline: 'AI and tech, used and logged',
   description:
     'Hands-on records of using AI coding and agent tools to finish actual work: head-to-head comparisons, what broke, and the hardware behind the workflow.',
   url: 'https://mossbysea.com',
