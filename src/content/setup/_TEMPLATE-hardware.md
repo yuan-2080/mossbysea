@@ -5,6 +5,10 @@ pubDate: 2026-10-09
 kind: hardware
 tags: ['hardware', 'workflow setup']
 affiliate: true
+# 可选文首题图：本地 assets/posts 的场景图（手绘 SVG 为默认语言）。
+# 只收本地文件不收远端 URL —— 题图是编辑元素，商品图走 ProductCard。
+# hero: ../../assets/posts/xxx-hero.svg
+# heroAlt: <描述场景，若是 illustration 必须写明 drawn, not photographed>
 draft: true
 ---
 

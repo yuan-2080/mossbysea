@@ -4,7 +4,9 @@ description: 'My 256 GB MacBook Air has 18.2 GB left after 19 months. I measured
 pubDate: 2026-10-11  
 kind: hardware  
 tags: ['hardware', 'mac', 'storage', 'workflow setup']  
-affiliate: false  
+affiliate: false
+hero: ../../assets/posts/macbook-air-desk.jpg
+heroAlt: "A thin silver laptop, lid half open, on a wooden desk in soft morning window light next to a white coffee mug — an illustrative image, not a photograph of the machine measured in this article"
 draft: false
 ---
 
@@ -12,8 +14,6 @@ draft: false
 > **In use since** March 2025 (~19 months)  
 > **Measured** 2026-10-11, macOS 15.7.5  
 > **Headline number** 18.22 GB free of 245.11 GB
-
-![A thin silver laptop, lid half open, on a wooden desk in soft morning window light next to a white coffee mug — an illustrative image, not a photograph of the machine measured in this article](../../assets/posts/macbook-air-desk.jpg)
 
 ## The short answer
 

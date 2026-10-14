@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 310" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <style>
+    .t2 { fill: #4a4f58; }
+    .t3 { fill: #868c96; }
+    .win { fill: #ffffff; stroke: #c6c9c2; stroke-width: 1; }
+    .mbar { fill: #c7d2fe; }
+    /* Apple 硬件保持银灰 —— 大胆的颜色只进屏幕内容和小物件 */
+    .body { fill: #e3e4e0; stroke: #c6c9c2; stroke-width: 1.5; }
+    .stand { stroke: #c6c9c2; stroke-width: 1.5; fill: none; }
+    .desk { stroke: #b9bdb6; stroke-width: 2; }
+    .divider { stroke: #c6c9c2; stroke-width: 1; opacity: 0.55; }
+    /* 壁纸色板：靛蓝夜空 + 琥珀太阳，两种主题下都不变（屏幕本来就是发光体） */
+    .sky { fill: #4338ca; }
+    .mtn1 { fill: #312e81; }
+    .mtn2 { fill: #1e1b4b; }
+    .sun { fill: #fbbf24; }
+    /* 小物件上站点 accent 色 */
+    .kb-body { fill: #2a78d6; stroke: #1a5fa5; stroke-width: 1.5; }
+    .kb-keys { fill: #eaf1fb; }
+    .kb-div { stroke: #ffffff; opacity: 0.55; stroke-width: 1; }
+    .mug { fill: #1baf7a; stroke: #0f7350; stroke-width: 1.5; }
+    .acc { fill: #2a78d6; }
+    .acc-s { stroke: #2a78d6; }
+    @media (prefers-color-scheme: dark) {
+      .t2 { fill: #b0b5bd; }
+      .t3 { fill: #7d838d; }
+      .win { fill: #20242c; stroke: #3d4046; }
+      .mbar { fill: #4f46e5; }
+      .body { fill: #26282c; stroke: #3d4046; }
+      .stand { stroke: #3d4046; }
+      .desk { stroke: #3a3e44; }
+      .divider { stroke: #3d4046; }
+      .kb-body { fill: #2563eb; stroke: #3d4046; }
+      .mug { fill: #1baf7a; stroke: #0f7350; }
+      .acc { fill: #6aa6ef; }
+      .acc-s { stroke: #6aa6ef; }
+    }
+  </style>
+
+  <defs>
+    <clipPath id="disp"><rect x="64" y="44" width="236" height="140" rx="6"/></clipPath>
+    <clipPath id="lids"><rect x="406" y="114" width="76" height="46" rx="3"/></clipPath>
+  </defs>
+
+  <!-- ── external display (left)：壁纸 = 大胆色的主场 ── -->
+  <rect x="64" y="44" width="236" height="140" rx="6" class="sky"/>
+  <g clip-path="url(#disp)">
+    <circle cx="252" cy="82" r="17" class="sun"/>
+    <polygon points="64,184 122,118 180,184" class="mtn1"/>
+    <polygon points="140,184 214,100 288,184" class="mtn2"/>
+  </g>
+  <rect x="64" y="44" width="236" height="140" rx="6" fill="none" stroke="#c6c9c2" stroke-width="1.5"/>
+  <rect x="72" y="52" width="220" height="10" rx="2" class="mbar"/>
+  <rect x="84" y="76" width="92" height="58" rx="3" class="win"/>
+  <rect x="188" y="86" width="100" height="66" rx="3" class="win"/>
+  <line x1="182" y1="184" x2="182" y2="242" class="stand"/>
+  <rect x="152" y="242" width="60" height="7" rx="3" class="body"/>
+
+  <!-- ── the external keyboard (front, centre)：accent 蓝 ── -->
+  <rect x="268" y="228" width="176" height="18" rx="3" class="kb-body"/>
+  <rect x="276" y="232" width="160" height="10" rx="2" class="kb-keys"/>
+  <line x1="300" y1="232" x2="300" y2="242" class="kb-div"/>
+  <line x1="324" y1="232" x2="324" y2="242" class="kb-div"/>
+  <line x1="348" y1="232" x2="348" y2="242" class="kb-div"/>
+  <line x1="372" y1="232" x2="372" y2="242" class="kb-div"/>
+  <line x1="396" y1="232" x2="396" y2="242" class="kb-div"/>
+  <line x1="420" y1="232" x2="420" y2="242" class="kb-div"/>
+
+  <!-- ── MacBook Air raised on a stand (right)：机身银灰，屏幕同款壁纸 ── -->
+  <rect x="396" y="166" width="96" height="76" rx="4" class="body"/>
+  <rect x="400" y="158" width="88" height="9" rx="4" class="body"/>
+  <rect x="406" y="114" width="76" height="46" rx="3" class="sky"/>
+  <g clip-path="url(#lids)">
+    <circle cx="464" cy="128" r="6" class="sun"/>
+    <polygon points="406,160 430,136 454,160" class="mtn1"/>
+    <polygon points="436,160 460,130 482,160" class="mtn2"/>
+  </g>
+  <rect x="406" y="114" width="76" height="46" rx="3" fill="none" stroke="#c6c9c2" stroke-width="1.5"/>
+  <rect x="410" y="118" width="68" height="7" rx="2" class="mbar"/>
+
+  <!-- ── mug：accent 绿 ──────────────────────────────── -->
+  <rect x="580" y="224" width="24" height="26" rx="3" class="mug"/>
+  <path d="M604 229 q13 5 0 15" class="stand"/>
+
+  <!-- ── the one desk ──────────────────────────────── -->
+  <line x1="24" y1="250" x2="656" y2="250" class="desk"/>
+
+  <!-- ── labels ────────────────────────────────────── -->
+  <text x="182" y="272" font-size="11.5" text-anchor="middle" class="t3">external display</text>
+  <text x="444" y="272" font-size="11.5" text-anchor="middle" class="t3">MacBook Air 13″, up on a stand</text>
+
+  <line x1="356" y1="264" x2="356" y2="252" class="acc-s" stroke-width="1.5"/>
+  <path d="M356 248 L352 255 L360 255 Z" class="acc"/>
+  <text x="356" y="286" font-size="11.5" font-weight="600" text-anchor="middle" class="acc">the keyboard this article is about</text>
+
+  <!-- ── kicker ────────────────────────────────────── -->
+  <text x="24" y="306" font-size="11.5" class="t2">One desk: display at eye level, the MacBook up on a stand — and its built-in keyboard out of reach.</text>
+</svg>

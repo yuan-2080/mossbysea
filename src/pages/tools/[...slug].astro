@@ -1,6 +1,18 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { getCollection, render } from 'astro:content';
 import Post from '../../layouts/Post.astro';
+
+// 与 setup/[...slug].astro 同款桥接：hero 路径字符串 → ImageMetadata
+const heroImages = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/posts/*.{svg,png,jpg,jpeg,webp,avif}',
+  { eager: true },
+);
+function resolveHero(path?: string): ImageMetadata | undefined {
+  if (!path) return undefined;
+  const key = `../../assets/posts/${path.split('/').pop()}`;
+  return heroImages[key]?.default;
+}
 
 export async function getStaticPaths() {
   const posts = await getCollection('tools', ({ data }) => !data.draft);
@@ -21,6 +33,6 @@ export async function getStaticPaths() {
 const { post, siblings } = Astro.props;
 const { Content } = await render(post);
 ---
-<Post {...post.data} siblings={siblings}>
+<Post {...post.data} hero={resolveHero(post.data.hero)} siblings={siblings}>
   <Content />
 </Post>

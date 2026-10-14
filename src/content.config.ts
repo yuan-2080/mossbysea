@@ -12,6 +12,12 @@ const base = z.object({
   tags: z.array(z.string()).default([]),
   // 本文是否包含联盟链接 —— 为 true 时文首自动插入披露条
   affiliate: z.boolean().default(false),
+  // 文首题图（可选）。值为相对 content 文件的路径（与正文图片同语法），
+  // 由 [...slug].astro 通过 import.meta.glob 解析成 ImageMetadata。
+  // 只收本地 assets/posts 的场景图（多为手绘 SVG），不收远端 URL ——
+  // 题图是编辑元素，不是商品图；商品图走 ProductCard
+  hero: z.string().optional(),
+  heroAlt: z.string().optional(),
   draft: z.boolean().default(false),
 });
 

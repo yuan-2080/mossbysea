@@ -303,7 +303,29 @@ h1, h2, h3, h4, p, ul, ol, blockquote, pre, .lede, .meta,
 
 /* ── article ────────────────────────────────────────── */
 article h1 { font-size: clamp(1.75rem, 3.6vw, 2.25rem); letter-spacing: -0.022em; }
-article > .meta { display: flex; align-items: center; gap: 0.55rem; }
+article > .meta {
+  display: flex; align-items: center; gap: 0.55rem;
+  /* 标题块之后的章节线（--rule-strong 分级的约定用法） */
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid var(--rule-strong);
+  margin-bottom: 0;
+}
+
+/* 文首题图 —— 比正文行宽（--measure）宽，破一下满屏文字的单调节奏。
+   图必须自带 width/height 属性（防 CLS）。 */
+.post-hero { max-width: none; margin: 1.9rem 0 2.1rem; }
+.post-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+}
+.post-hero figcaption {
+  font-size: 0.83rem;
+  color: var(--ink-3);
+  margin-top: 0.4rem;
+}
 
 article table {
   border-collapse: collapse;
@@ -321,12 +343,21 @@ article th, article td {
 article th { background: var(--code-bg); font-weight: 600; }
 .table-wrap { overflow-x: auto; }
 
+/* 文首"事实块"（Tested / Machine / Based on…）—— 每篇都以它开头，
+   所以 blockquote 统一做成面板而不是裸引用；左边框取文章 kind 色 */
 article blockquote {
-  margin: 1.5rem 0;
-  padding-left: 1rem;
+  margin: 1.75rem 0;
+  padding: 0.95rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
   border-left: 3px solid var(--rule-strong);
+  border-radius: 10px;
   color: var(--ink-2);
 }
+article.k-comparison > blockquote { border-left-color: var(--k-comparison-fg); }
+article.k-hands-on   > blockquote { border-left-color: var(--k-hands-fg); }
+article.k-guide      > blockquote { border-left-color: var(--k-guide-fg); }
+article.k-hardware   > blockquote { border-left-color: var(--k-hardware-fg); }
 article img, article video {
   max-width: 100%;
   height: auto;

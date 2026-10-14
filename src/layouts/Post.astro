@@ -1,4 +1,5 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { SITE } from '../consts';
 import Base from './Base.astro';
 import AffiliateNotice from '../components/AffiliateNotice.astro';
@@ -10,12 +11,15 @@ interface Props {
   updatedDate?: Date;
   kind: string;
   affiliate?: boolean;
+  /** 文首题图（本地 assets/posts，ImageMetadata 由 z.image() 解析） */
+  hero?: ImageMetadata;
+  heroAlt?: string;
   /** 同 cluster 的其他文章，用于内链 —— 这是 cluster 密度的关键 */
   siblings?: { href: string; title: string }[];
 }
 const {
   title, description, pubDate, updatedDate, kind,
-  affiliate = false, siblings = [],
+  affiliate = false, hero, heroAlt, siblings = [],
 } = Astro.props;
 
 const KIND_LABEL: Record<string, string> = {
@@ -46,12 +50,25 @@ const jsonLd = {
 };
 ---
 <Base title={title} description={description} ogType="article">
-  <article>
+  <article class:list={['post', `k-${kind}`]}>
     <h1>{title}</h1>
     <p class="meta">
       <span class:list={['kind', `kind-${kind}`]}>{KIND_LABEL[kind] ?? kind}</span>
       <span>{fmt(pubDate)}{updatedDate && <> · updated {fmt(updatedDate)}</>}</span>
     </p>
+
+    {hero && (
+      <figure class="post-hero">
+        <img
+          src={hero.src}
+          alt={heroAlt ?? ''}
+          width={hero.width ?? 680}
+          height={hero.height ?? 310}
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+    )}
 
     {affiliate && <AffiliateNotice />}
 
