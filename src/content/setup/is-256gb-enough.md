@@ -1,5 +1,5 @@
 ---
-title: 'Is 256 GB enough on a MacBook Air? What 19 months actually filled it'
+title: 'Is 256 GB enough on a MacBook Air? 19 months later'
 description: 'My 256 GB MacBook Air has 18.2 GB left after 19 months. I measured where every gigabyte went — and my own documents account for 12 MB of it.'  
 pubDate: 2026-10-11  
 kind: hardware  

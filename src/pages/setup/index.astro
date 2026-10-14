@@ -18,18 +18,21 @@ const posts = (await getCollection('setup', ({ data }) => !data.draft)).sort(byN
   <h1>The Workflow Setup</h1>
   <p class="lede">
     The other half of the site. The tools line covers software I test; this line
-    covers the <strong>hardware I actually own</strong> — what it was bought for,
-    how long it has been on the desk, where it broke, and what it really cost
-    including the hours.
+    covers the <strong>hardware</strong> — what it was bought for, how long it has
+    been on the desk, where it broke, and what it really cost including the hours.
+    Where a post rests on specifications instead of a device I own, the first line
+    of that post says so.
   </p>
 
   <h2>How this line is written</h2>
   <p>
-    Same standard as the tools line, with one extra rule that matters more here:
+    Same standard as the tools line. There are two kinds of post here, and each one
+    is labelled at the top:
   </p>
   <ul>
-    <li><strong>Owned, not reviewed.</strong> Every device here is one I bought and use. Nothing is borrowed, seeded, or bought for the sake of a post. If I haven't lived with it, it isn't here.</li>
-    <li><strong>Long enough to know.</strong> Posts are written after months of use, not after unboxing. Early enthusiasm and month-three opinion are usually different, and the post tells you which one it is.</li>
+    <li><strong>Owned.</strong> A device I bought and use, written up after months rather than after unboxing. Nothing here is borrowed, seeded, or bought for the sake of a post.</li>
+    <li><strong>Researched.</strong> A buying guide built from manufacturer spec pages, published prices and other people's testing. Marked <em>Researched</em>, never written in the first person, and never claiming an experience I didn't have. I can recommend something I haven't held; I can't write as if I'd used it.</li>
+    <li><strong>Long enough to know.</strong> For anything owned, the write-up comes after months of use. Early enthusiasm and month-three opinion are usually different, and the post tells you which one it is.</li>
     <li><strong>Manuals and official specs only.</strong> Numbers come from the manufacturer's own page, not from third-party roundup sites.</li>
     <li><strong>Costs stated.</strong> Price paid, anything it forced me to buy, and the hours it cost in setup, debugging and returns.</li>
     <li><strong>Failures included.</strong> Where it broke, or where I gave up on a feature, gets written up too.</li>

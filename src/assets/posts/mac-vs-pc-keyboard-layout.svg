@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 322" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <style>
+    .t1 { fill: #16181d; }
+    .t2 { fill: #4a4f58; }
+    .t3 { fill: #868c96; }
+    .key { fill: #f4f5f2; stroke: #d3d6cf; stroke-width: 1; }
+    .key-mod { fill: #e4f7f0; stroke: #9fd8c2; stroke-width: 1; }
+    .key-text { fill: #16181d; font-size: 11.5px; }
+    .key-sub { fill: #6c727b; font-size: 9px; }
+    .map { stroke: #1baf7a; stroke-width: 1.4; fill: none; }
+    .map-warn { stroke: #e08a2e; stroke-width: 1.4; fill: none; stroke-dasharray: 4 3; }
+    .foot { fill: #868c96; font-size: 10.5px; }
+    @media (prefers-color-scheme: dark) {
+      .t1 { fill: #eceef1; }
+      .t2 { fill: #b0b5bd; }
+      .t3 { fill: #7d838d; }
+      .key { fill: #22252b; stroke: #3a3f47; }
+      .key-mod { fill: #102b22; stroke: #2c6a55; }
+      .key-text { fill: #eceef1; }
+      .key-sub { fill: #8b9199; }
+      .map { stroke: #4fd4a4; }
+      .map-warn { stroke: #e0a057; }
+      .foot { fill: #7d838d; }
+    }
+  </style>
+
+  <text x="0" y="26" font-size="18" font-weight="600" class="t1">The bottom row is not the problem the labels suggest</text>
+  <text x="0" y="48" font-size="12.5" class="t3">Left of the spacebar, a PC keyboard and a Mac keyboard put three modifier keys in the same order. macOS maps them for you.</text>
+
+  <!-- ── Mac row ─────────────────────────────── -->
+  <text x="0" y="86" font-size="12" font-weight="600" class="t2">What is printed on a Mac keyboard</text>
+
+  <rect x="0" y="96" width="60" height="38" rx="5" class="key"/>
+  <text x="30" y="120" text-anchor="middle" class="key-text">fn</text>
+
+  <rect x="66" y="96" width="100" height="38" rx="5" class="key-mod"/>
+  <text x="116" y="113" text-anchor="middle" class="key-text">control</text>
+  <text x="116" y="126" text-anchor="middle" class="key-sub">^</text>
+
+  <rect x="172" y="96" width="100" height="38" rx="5" class="key-mod"/>
+  <text x="222" y="113" text-anchor="middle" class="key-text">option</text>
+  <text x="222" y="126" text-anchor="middle" class="key-sub">alt / ⌥</text>
+
+  <rect x="278" y="96" width="110" height="38" rx="5" class="key-mod"/>
+  <text x="333" y="113" text-anchor="middle" class="key-text">command</text>
+  <text x="333" y="126" text-anchor="middle" class="key-sub">⌘</text>
+
+  <rect x="394" y="96" width="230" height="38" rx="5" class="key"/>
+
+  <!-- ── PC row ──────────────────────────────── -->
+  <text x="0" y="176" font-size="12" font-weight="600" class="t2">What is printed on a PC keyboard</text>
+
+  <rect x="66" y="186" width="100" height="38" rx="5" class="key"/>
+  <text x="116" y="203" text-anchor="middle" class="key-text">ctrl</text>
+  <text x="116" y="216" text-anchor="middle" class="key-sub">→ control</text>
+
+  <rect x="172" y="186" width="100" height="38" rx="5" class="key"/>
+  <text x="222" y="203" text-anchor="middle" class="key-text">alt</text>
+  <text x="222" y="216" text-anchor="middle" class="key-sub">→ option ⌥</text>
+
+  <rect x="278" y="186" width="110" height="38" rx="5" class="key"/>
+  <text x="333" y="203" text-anchor="middle" class="key-text">win</text>
+  <text x="333" y="216" text-anchor="middle" class="key-sub">→ command ⌘</text>
+
+  <rect x="394" y="186" width="230" height="38" rx="5" class="key"/>
+
+  <!-- mapping lines from PC row up to Mac row -->
+  <path d="M100 186 L100 134" class="map"/>
+  <path d="M206 186 L206 134" class="map"/>
+  <path d="M300 186 L300 134" class="map"/>
+
+  <!-- ── bottom note ─────────────────────────── -->
+  <line x1="0" y1="248" x2="680" y2="248" stroke="#c6c9c2" stroke-width="1" opacity="0.7"/>
+  <text x="0" y="272" font-size="12" font-weight="600" class="t1">Where it actually goes wrong: the top row</text>
+  <text x="0" y="292" font-size="11.5" class="t2">On a Mac keyboard F1 and F2 are brightness and F10–F12 are volume. Many third-party keyboards send plain F1–F12 instead, so you hold Fn every time — and some have no Fn lock to escape that.</text>
+  <text x="0" y="312" font-size="11.5" class="t3">Any keyboard can be remapped: System Settings → Keyboard → Keyboard Shortcuts… → Modifier Keys.</text>
+</svg>

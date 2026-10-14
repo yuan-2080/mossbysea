@@ -11,6 +11,15 @@
 //      卡底出现佣金提示；同时 frontmatter 的 affiliate 也要是 true，
 //      文首披露条才会出现 —— 两者必须同真同假。
 //   4. 评分 rating 0–5，只给上过手的东西打分；researched 卡不要打分。
+//
+// 配图 image（2026-10-14 加）：
+//   5. 只收**远端 URL**，不收 Astro 导入的资源。原因不是懒 —— 是 Amazon 的
+//      联盟条款要求商品图**从 Amazon 的服务器加载**（m.media-amazon.com），
+//      不许下载到本站再托管。PartnerBoost 的商品接口 image 字段给的正是这个域名的链。
+//   6. 用图的前提是**该品牌已是 Joined**（能拿到推广链）。没建立合作关系的品牌
+//      不放它的商品图 —— 图与链同源，一起进一起出。
+//   7. 图注不许暗示"我有一台"。商品图说明的是"这个东西长这样"，
+//      不是"我桌上有它"。实测口吻只由 basis="hands-on" 授予。
 // ───────────────────────────────────────────────────────────────
 interface CardLink {
   label: string;
@@ -27,6 +36,9 @@ interface Props {
   links?: CardLink[];
   affiliate?: boolean;
   basis?: 'hands-on' | 'researched';
+  /** 商品图，远端 URL（见文件头第 5 条）。不给就是不排版 */ 
+  image?: string;
+  imageAlt?: string;
 }
 
 const {
@@ -38,6 +50,8 @@ const {
   links = [],
   affiliate = false,
   basis = 'hands-on',
+  image,
+  imageAlt,
 } = Astro.props;
 
 const rel = affiliate ? 'sponsored nofollow noopener' : 'noopener';
@@ -45,27 +59,46 @@ const full = rating != null ? Math.round(rating) : 0;
 ---
 
 <aside class="pcard">
-  <div class="pcard-head">
-    <div class="pcard-title-row">
-      <h3 class="pcard-name">{name}</h3>
-      <span class:list={['pcard-basis', basis === 'researched' && 'is-researched']}>
-        {basis === 'researched' ? 'Researched' : 'Hands-on'}
-      </span>
-    </div>
+  <div class:list={['pcard-top', image && 'has-media']}>
     {
-      rating != null && (
-        <div class="pcard-rating" aria-label={`Rated ${rating} out of 5`}>
-          <span class="pcard-stars" aria-hidden="true">
-            {'★'.repeat(full)}
-            {'☆'.repeat(5 - full)}
-          </span>
-          <span class="pcard-score">{rating}/5</span>
+      image && (
+        <div class="pcard-media">
+          <img
+            src={image}
+            alt={imageAlt ?? `${name} — product image`}
+            loading="lazy"
+            decoding="async"
+            width="500"
+            height="500"
+          />
         </div>
       )
     }
-  </div>
 
-  <p class="pcard-verdict">{verdict}</p>
+    <div class="pcard-main">
+      <div class="pcard-head">
+        <div class="pcard-title-row">
+          <h3 class="pcard-name">{name}</h3>
+          <span class:list={['pcard-basis', basis === 'researched' && 'is-researched']}>
+            {basis === 'researched' ? 'Researched' : 'Hands-on'}
+          </span>
+        </div>
+        {
+          rating != null && (
+            <div class="pcard-rating" aria-label={`Rated ${rating} out of 5`}>
+              <span class="pcard-stars" aria-hidden="true">
+                {'★'.repeat(full)}
+                {'☆'.repeat(5 - full)}
+              </span>
+              <span class="pcard-score">{rating}/5</span>
+            </div>
+          )
+        }
+      </div>
+
+      <p class="pcard-verdict">{verdict}</p>
+    </div>
+  </div>
 
   {
     (pros.length > 0 || cons.length > 0) && (
@@ -126,6 +159,26 @@ const full = rating != null ? Math.round(rating) : 0;
     border-radius: 12px;
     background: var(--card);
     padding: 1.1rem 1.25rem 1.25rem;
+  }
+  /* 有图时：图在左、文字在右；没图时 .pcard-main 独占一行，排法与旧版一致 */
+  .pcard-top.has-media {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 1.1rem;
+    align-items: start;
+  }
+  .pcard-media {
+    /* 商品图多为白底或透明底。固定一块白板，两种主题下都是"商品图"该有的样子，
+       也避免深色主题里透明 PNG 直接掉进黑背景。 */
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 0.45rem;
+  }
+  .pcard-media img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
   .pcard-head {
     display: flex;
@@ -273,6 +326,14 @@ const full = rating != null ? Math.round(rating) : 0;
     font-size: 0.75rem;
     color: var(--ink-3);
     flex-basis: 100%;
+  }
+  @media (max-width: 560px) {
+    .pcard-top.has-media {
+      grid-template-columns: 1fr;
+    }
+    .pcard-media {
+      max-width: 190px;
+    }
   }
   @media (max-width: 480px) {
     .pcard-pc {

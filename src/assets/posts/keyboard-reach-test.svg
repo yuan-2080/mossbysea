@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 352" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <style>
+    .t1 { fill: #16181d; }
+    .t2 { fill: #4a4f58; }
+    .t3 { fill: #868c96; }
+    .chip { fill: #f4f5f2; }
+    .screen { fill: #eaf1fb; stroke: #c6c9c2; stroke-width: 1.5; }
+    .body { fill: #e3e4e0; stroke: #c6c9c2; stroke-width: 1.5; }
+    .stand { stroke: #c6c9c2; stroke-width: 1.5; }
+    .desk { stroke: #b9bdb6; stroke-width: 2; }
+    .divider { stroke: #c6c9c2; stroke-width: 1; opacity: 0.55; }
+    .ok { fill: #0f7350; }
+    .ok-s { stroke: #0f7350; }
+    .warn { fill: #8a6110; }
+    .warn-s { stroke: #8a6110; }
+    @media (prefers-color-scheme: dark) {
+      .t1 { fill: #eceef1; }
+      .t2 { fill: #b0b5bd; }
+      .t3 { fill: #7d838d; }
+      .chip { fill: #1b1d21; }
+      .screen { fill: #1a2433; stroke: #3d4046; }
+      .body { fill: #26282c; stroke: #3d4046; }
+      .stand { stroke: #3d4046; }
+      .desk { stroke: #3a3e44; }
+      .divider { stroke: #3d4046; }
+      .ok { fill: #4fd4a4; }
+      .ok-s { stroke: #4fd4a4; }
+      .warn { fill: #d9a63f; }
+      .warn-s { stroke: #d9a63f; }
+    }
+  </style>
+
+  <text x="0" y="26" font-size="18" font-weight="600" class="t1">Your hands rest at desk height. Where does the keyboard sit?</text>
+  <text x="0" y="48" font-size="12.5" class="t3">The same desk, the same external display, two different MacBook positions. Only one of them creates a problem to solve.</text>
+
+  <!-- ── chips ──────────────────────────────────── -->
+  <rect x="107" y="68" width="118" height="24" rx="12" class="chip"/>
+  <text x="166" y="84" font-size="12.5" text-anchor="middle" class="t2">Lid open, low riser</text>
+
+  <rect x="436" y="68" width="160" height="24" rx="12" class="chip"/>
+  <text x="516" y="84" font-size="12.5" text-anchor="middle" class="t2">Lid closed, or tall stand</text>
+
+  <!-- ── column divider ─────────────────────────── -->
+  <line x1="340" y1="100" x2="340" y2="258" class="divider"/>
+
+  <!-- ── column A: laptop on the desk (cx = 166) ── -->
+  <rect x="128" y="100" width="76" height="48" rx="4" class="screen"/>
+  <line x1="166" y1="148" x2="166" y2="246" class="stand"/>
+  <!-- laptop stays on the desk, so its keyboard is level with your hands -->
+  <rect x="134" y="196" width="64" height="42" rx="3" class="screen"/>
+  <rect x="128" y="238" width="76" height="8" rx="4" class="body"/>
+  <circle cx="262" cy="216" r="15" fill="none" class="ok-s" stroke-width="1.8"/>
+  <path d="M255 216 l5 5.5 l10.5 -12" fill="none" class="ok-s" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ── column B: laptop on a tall stand (cx = 516) ── -->
+  <rect x="478" y="100" width="76" height="48" rx="4" class="screen"/>
+  <line x1="516" y1="148" x2="516" y2="246" class="stand"/>
+  <!-- the laptop has been raised: the keyboard travelled up with it -->
+  <rect x="484" y="156" width="64" height="42" rx="3" class="screen"/>
+  <rect x="478" y="198" width="76" height="8" rx="4" class="body"/>
+  <rect x="496" y="206" width="40" height="42" rx="3" class="body"/>
+  <!-- the gap between desk height and keyboard height -->
+  <line x1="612" y1="198" x2="612" y2="248" class="warn-s" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M612 198 L607 205 L617 205 Z" class="warn"/>
+  <path d="M612 248 L607 241 L617 241 Z" class="warn"/>
+  <text x="634" y="223" font-size="10.5" class="warn" text-anchor="middle" transform="rotate(-90 634 223)">out of reach</text>
+
+  <!-- ── the one desk ───────────────────────────── -->
+  <line x1="24" y1="248" x2="656" y2="248" class="desk"/>
+
+  <!-- ── captions ───────────────────────────────── -->
+  <text x="166" y="288" font-size="13" font-weight="600" text-anchor="middle" class="ok">Keyboard at hand height</text>
+  <text x="166" y="308" font-size="11.5" text-anchor="middle" class="t3">Lid open on a low riser: nothing to buy.</text>
+
+  <text x="516" y="288" font-size="13" font-weight="600" text-anchor="middle" class="warn">Keyboard above the desk</text>
+  <text x="516" y="308" font-size="11.5" text-anchor="middle" class="t3">Closed lid or a tall stand: the case that needs one.</text>
+
+  <!-- ── footer ─────────────────────────────────── -->
+  <text x="0" y="338" font-size="11.5" class="t2">If you are in the left column, the rest of this article is not for you.</text>
+</svg>
