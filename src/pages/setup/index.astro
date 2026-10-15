@@ -13,7 +13,7 @@ const posts = (await getCollection('setup', ({ data }) => !data.draft)).sort(byN
 ---
 <Base
   title="The Workflow Setup"
-  description="The hardware behind the workflow: keyboards, docks, drives and the machines that run models locally. Written only about devices I actually own and use."
+  description="The hardware behind the workflow: monitors, keyboards, docks and drives. Long-term notes on devices I own, and researched buying guides labelled as such."
   noindex={posts.length === 0}
 >
   <h1>The Workflow Setup</h1>
@@ -42,6 +42,13 @@ const posts = (await getCollection('setup', ({ data }) => !data.draft)).sort(byN
     The full methodology and conflict-of-interest statement are on the
     <a href="/about/">About</a> page, and the affiliate policy is on the
     <a href="/affiliate-disclosure/">disclosure page</a>.
+  </p>
+
+  <h2>Tools</h2>
+  <p>
+    <a href="/setup/mac-monitor-ppi-calculator/"><strong>Mac monitor ppi and scaling calculator</strong></a> —
+    enter a monitor's size and resolution to see whether macOS will render it at a clean
+    Retina 2×, native 1×, or in the fractional zone where text goes soft.
   </p>
 
   <h2 class="section-head k-hardware">

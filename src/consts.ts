@@ -5,7 +5,7 @@ export const SITE = {
   name: 'MossBySea',
   tagline: 'AI and tech, used and logged',
   description:
-    'Hands-on records of using AI coding and agent tools to finish actual work: head-to-head comparisons, what broke, and the hardware behind the workflow.',
+    'AI coding tools and the hardware behind them: comparisons, buying guides and long-term notes, each labelled with what was used and what was researched.',
   url: 'https://mossbysea.com',
   email: 'hello@mossbysea.com',
   author: 'Moss',
@@ -22,11 +22,10 @@ export const ANALYTICS: { cfBeaconToken: string } = {
   cfBeaconToken: '',
 };
 
-// 导航。/setup/ 暂不上线（见 README「阶段规划」），
-// 等 /tools/ 满 10 篇后把下面这行的注释去掉。
+// 导航。/setup/ 于 2026-10-15 上线（硬件线已是主线，5 篇 + 计算器）。
 export const NAV = [
   { href: '/tools/', label: 'AI Tools' },
-  // { href: '/setup/', label: 'Workflow Setup' },
+  { href: '/setup/', label: 'Setup' },
   { href: '/about/', label: 'About' },
 ] as const;
 
